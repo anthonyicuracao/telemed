@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="./assets/img/favicons/favicon.ico">
+    <link rel="stylesheet" href="./assets/libs/flickity/dist/flickity.min.css">
+    <link rel="stylesheet" href="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="./assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./assets/libs/simplebar/dist/simplebar.min.css">
+    <link rel="stylesheet" href="./assets/libs/highlightjs/styles/vs2015.css">
+    <link rel="stylesheet" href="./assets/libs/flickity-fade/flickity-fade.css">
+    <link rel="stylesheet" href="./assets/fonts/feather/feather.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/theme.min.css">
+    <title>Curacao - All the brands you love. Low Easy Payments!</title>
+</head>
+<!-- pop up begin -->
+<div class="modal fade" id="firstModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fe fe-x" aria-hidden="true"></i>
+            </button>
+            <div id="firstPt" class="modal-body">
+                <div class="row mb-6">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                            <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
+                            <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-1234</p>
+                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">or get code <span>by voice</span>, You may also verify
+                                with your <span style="color: #008ecf;" onclick="modalFn()">personal information</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
+                        <div class="form-group">
+                            <label class="sr-only" for="activationCode">######</label>
+                            <input class="form-control" id="activationCode" type="text" placeholder="######" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="thank-you.html" class="btn btn-block btn-secondary" type="button">Verify</a>
+                    </div>
+                </div>
+            </div>
+            <div id="secondPt" style="display: none;" class="modal-body">
+                <div class="row mb-6">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">Verify with your personal information</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="form-group">
+                            <label class="sr-only" for="last4SSN">Last 4 SSN</label>
+                            <input class="form-control" id="last4SSN" type="text" placeholder="Last 4 SSN">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-12 col-md-5">
+                        <div class="form-group">
+                            <label class="sr-only" for="dateOfBirth">Date of birth</label>
+                            <input class="form-control" id="dateOfBirth" type="text" placeholder="Date of birth">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 text-center">
+                        <div class="py-3">OR</div>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="form-group">
+                            <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
+                            <input class="form-control" id="mothersMaidenName" type="text" placeholder="Mothers Maiden Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="thank-you.html" class="btn btn-block btn-secondary">Verify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pop up end -->
+
+<body data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
+    <nav class="navbar navbar-dark fixed-top bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img alt="curacao" class="telemed-logo" src="./assets/img/telemed/logo.png">
+            </a>
+            <a class="nav-link ml-auto text-white" href="tel:8002872226">
+                <span class="desktop-only">800-287-2226</span>
+                <i class="mobile-only fas fa-phone"></i>
+            </a>
+            </ul>
+        </div>
+    </nav>
+    <section class="desktop-only" data-jarallax data-speed=".8" style="background-image: url(https://icuracao.com/media/assets/calmed/images/telemed-header-PC-eng.jpg);">
+        <div class="container py-12">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <h1 class="font-size-h1 amplesoft-b display-4">Talk to a Doctor 24/7 by Video or Phone</h1>
+                    <img src="https://icuracao.com/media/assets/calmed/images/hello-alvin-telemed-logo-eng.png" alt="">
+
+                </div>
+                <div class="col-12 col-md-6 text-left">
+                    <div class="position-relative">
+                        <a data-fancybox="" href="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.webm" autopay="true">
+                            <img src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.jpg" alt="..." class="img-fluid w-75 mt-15 mb-5">
+                        </a>
+                    </div>
+                    <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">Select a Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mobile-only mt-n8">
+        <div class="row">
+            <div class="col">
+                <img src="https://icuracao.com/media/assets/calmed/images/telemed-header-MOB-eng.jpg" alt="Curacao | TeleMED" class="w-100 h-auto mt-2"> </div>
+        </div>
+        <div class="row mt-n15 align-items-center">
+            <div class="col-12 text-center">
+                <div class="position-relative">
+                    <a data-fancybox="" href="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.webm" autopay="true">
+                        <img src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.jpg" alt="..." class="img-fluid w-75 mt-15 mb-5">
+                    </a>
+                </div>
+                <p class="amplesoft-b" style="font-size: 3.5rem;">Talk to a Doctor 24/7 by Video or Phone</p>
+                <div class="mx-3"> <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn-block btn btn-secondary"> Select a Plan </a> </div>
+            </div>
+        </div>
+    </section>
+    <div class="py-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="mb-4 text-primary h-neue-black">Hello Alvin Subscriptions Benefits</h3>
+                    <div class="row py-3 bg-light">
+                        <div class="pc-only col-12 col-md-4">
+                            <div class="d-flex h-100 justify-content-center">
+                                <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3" src="assets/img/telemed/telemed-1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="d-flex h-100 justify-content-center">
+                                <ul class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">Access to US Certified Doctor 24/7 via Phone or Video</span></li>
+                                    <li class="checkmark-item py-2">Free 24/7 Nurse Line</span></li>
+                                    <li class="checkmark-item py-2">One FREE MD consultation per month</span></li>
+                                    <li class="checkmark-item py-2">Free Discount Pharmacy Card</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="d-flex h-100 justify-content-center">
+                                <ul class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">One FREE MD consultation per month</span></li>
+                                    <li class="checkmark-item py-2">Free Email a Specialist Services</span></li>
+                                    <li class="checkmark-item py-2">Only $15 per additional consultation</span></li>
+                                    <li class="checkmark-item py-2">Average wait time to see a doctor is under 10 minutes</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-4 w-lg-50 mx-auto mt-n4 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h4 class="text-white gotham-cb">Coronavirus (COVID-19) We're here for you</h4>
+                    <h5 class="text-white mb-0 gotham-cl">As the coronavirus outbreak evolves, the need for our care has never been greater. As a result, you may experience extended wait times.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mob-only p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex h-100 justify-content-center">
+                        <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3" src="assets/img/telemed/telemed-1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="selectYourPlan" class="p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="mb-2 text-primary h-neue-black">Select your plan now</h3>
+                    <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap to select a plan, enter your Curacao Account and click on “Continue”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="max-width: 100%; margin: 0 auto;">
+        <div class="col-12 col-md-4 text-center">
+            <div class="telemed-offer ml-n2 mt-n2 position-relative"><input type="radio" name="familyPlan" value="telemed1" id="telemed1">
+                <label class="primary" for="telemed1">
+                    <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
+                    <h1 class="mt-5 mb-n5">
+                        <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
+                        <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">40</span>
+                        <span class="amplesoft-b" style="font-size: 2.5rem;">00</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                    </h1>
+                    <p class="mb-0">No commitment</p>
+                </label>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <div class="telemed-offer ml-n2 mt-n2 position-relative">
+                <div class="card-circle bg-secondary card-circle-right">
+                    <strong class="font-size-xs amplesoft-b">SAVE</strong>
+                    <span class="h6 amplesoft-b mb-0">$120</span>
+                </div>
+                <input type="radio" name="familyPlan" value="telemed2" id="telemed2">
+                <label class="primary" for="telemed2">
+                    <h4 class="amplesoft mb-n6 mb-0">RECOMMENDED</h4>
+                    <h1 class="mt-5 mb-n5">
+                        <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
+                        <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">29</span>
+                        <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                    </h1>
+                    <p class="mb-0">12 months plan*</p>
+                </label>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+            <div class="telemed-offer ml-n2 mt-n2 position-relative">
+                <div class="card-circle bg-secondary card-circle-right">
+                    <strong class="font-size-xs amplesoft-b">SAVE</strong>
+                    <span class="h6 amplesoft-b mb-0">$360</span>
+                </div>
+                <input type="radio" name="familyPlan" value="telemed3" id="telemed3">
+                <label class="primary" for="telemed3">
+                    <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
+                    <h1 class="mt-5 mb-n5">
+                        <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
+                        <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">24</span>
+                        <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                    </h1>
+                    <p class="mb-0">24 months plan*</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="container max-auto w-lg-50 mt-4">
+        <div class="row">
+            <div class="col text-center">
+                <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="email" placeholder="Curacao Credit account"> </div>
+                        <div class="col-12 text-center py-5"> <a href="#reviewComplete" data-toggle="smooth-scroll" class="btn btn-block btn-secondary " type="button"> Continue
+                                with this Plan </a> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <small class="text-gray-500">*This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
+            </div>
+        </div>
+    </div>
+    <div id="reviewComplete" class="p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
+                    <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
+                    <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editCollapseParentOne" class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-sm-12"> Name<br /><span class="gotham-b text-dark">johndoe@gmail.com</span></div>
+                <div class="col-md-6 col-sm-12"> Account Number:<br /><span class="gotham-b text-dark">johndoe@gmail.com</span></div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-8 font-size-lg"> Email<br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
+                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseOne"> Edit </a> </div>
+                    </div>
+                    <div class="collapse" id="editCollapseOne" data-parent="#editCollapseParentOne">
+                        <div class="row">
+                            <div class="col text-center">
+
+                                <form>
+                                    <div class="form-row pb-4">
+                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="email" placeholder="Enter Email *"> </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center"> <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
+                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseTwo"> Edit </a> </div>
+                    </div>
+                    <div class="collapse" id="editCollapseTwo" data-parent="#editCollapseParentOne">
+                        <div class="row">
+                            <div class="col text-center">
+
+                                <form>
+                                    <div class="form-row pb-4">
+                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="email" placeholder="Enter Email *"> </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center"> <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
+                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseThree"> Edit </a> </div>
+                    </div>
+
+                    <div class="collapse" id="editCollapseThree" data-parent="#editCollapseParentOne">
+                        <div class="row">
+                            <div class="col text-center">
+
+                                <form>
+                                    <div class="form-row pb-4">
+                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="email" placeholder="Enter Email *"> </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center"> <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
+                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseFour"> Edit </a> </div>
+                    </div>
+                    <div class="collapse" id="editCollapseFour" data-parent="#editCollapseParentOne">
+                        <div class="row">
+                            <div class="col text-center">
+
+                                <form>
+                                    <div class="form-row pb-4">
+                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="email" placeholder="Enter Email *"> </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center"> <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container max-auto w-lg-50 mt-4">
+        <div class="row">
+            <div class="col text-center">
+                <p class="h-neue-b text-gray-500 text-center">Select gender (required field)</p>
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group mb-0">
+                                <label class="sr-only" for="modalSearchCategories">Categories:</label>
+                                <select class="custom-select" id="modalSearchCategories">
+                                    <option selected="">All Categories</option>
+                                    <option>Women</option>
+                                    <option>Men</option>
+                                    <option>Kids</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center py-5"> <button class="btn btn-block btn-secondary " data-toggle="modal" data-target="#firstModal"> Continue</button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="mb-4 text-primary h-neue-black">What people are saying about Us</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card card-lg mb-4">
+                    <div class="card-body text-center bg-light">
+                        <blockquote class="blockquote mb-0">
+                            <div class="rating font-size-xs text-warning mb-2" data-value="5">
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                            </div>
+                            <p class="mb-2 font-size-lg font-style-normal">I was at work and not feeling well. I had heard about Hello Alvin from a friend, so I signed up and was immediately able to send an email to a doctor. Within about an hour, a doctor responded to my email. Problem solved! I tell all of my friends to check out Hello Alvin. Whether they are insured or uninsured anyone can use this great healthcare service.</p>
+                            <footer class="blockquote-footer h-neue-b">Mike T., Kansas City, Missouri </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card card-lg mb-4">
+                    <div class="card-body text-center bg-light">
+                        <blockquote class="blockquote mb-0">
+                            <div class="rating font-size-xs text-warning mb-2" data-value="5">
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                            </div>
+                            <p class="mb-2 font-size-lg font-style-normal">I was recently struggling with numbness in my toes, I contacted a Hello Alvin doctor, and in less than 24 hours I got an email back saying it was sensory pressure neuropathy. The doctor told me to wear shoes that would not compress my toes and expect full recovery in less than 72 hours. Because of Hello Alvin, I saved time and money by not going to a specialist. </p>
+                            <footer class="blockquote-footer h-neue-b">Tory C., Oakland, New Jersey </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <div class="card card-lg mb-4">
+                    <div class="card-body text-center bg-light">
+                        <blockquote class="blockquote mb-0">
+                            <div class="rating font-size-xs text-warning mb-2" data-value="5">
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                                <div class="rating-item"><i class="fas fa-star"></i> </div>
+                            </div>
+                            <p class="mb-2 font-size-lg font-style-normal">My wife and I have a two-year-old daughter. On a Saturday night she developed a pain in her elbow. I called the Hello Alvin 24-hour Registered Nurse line and within a minute or two I was speaking with a registered nurse who advised me on what to do. Fast, convenient, and the nurse line was included in the Hello Alvin subscription, so there was no fee to use it.</p>
+
+                            <footer class="blockquote-footer h-neue-b">Emin H., St. Louis, Missouri </footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4">
+        <div class="row no-gutters justify-content-between">
+            <div class="col-12 col-md-6">
+                <div class="d-flex h-100 justify-content-center">
+                    <img style="border-radius: 1rem;" class="align-self-center img-fluid" src="https://icuracao.com/media/assets/calmed/images/telemed-hello-alvin-teladoc-doctors-and-nurses.jpg" alt=""></div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="d-flex h-100 justify-content-center">
+                    <div class="align-self-center p-4">
+                        <h1 class="mb-4 amplesoft-b">Once you enroll, it's easy to download the TELADOC app. </h1>
+                        <p class="mb-4 font-size-lg text-gray-500 h-neue-b">Our mission is to see that everyone in America has access to convenient, affordable healthcare, on demand, 24/7. </p>
+                        <p class="mb-4 font-size-lg text-gray-450 h-neue">Having a doctor available right from home, by video or phone, is a smart thing to do. </p>
+                        <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary">SELECT A PLAN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="text-primary h-neue-black">FAQ’s</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <ul class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseOne">Do I need insurance to use the service? </a>
+                        <div class="collapse" id="faqCollapseOne" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. You do not need to have a health insurance plan to access our doctors and nurses 24/7. It's just like going to a walk-in urgent care or ER, except without all of the travel and high costs. And, if you need a prescription - they can write you one if they believe it to be medically needed. You'll also have 24/7 unlimited access to our Registered Nurse Line and Email-a-Doctor services at no additional cost.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseTwo">Can I get a prescription? </a>
+                        <div class="collapse" id="faqCollapseTwo" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">If medically needed. It is up to the doctor to recommend the best treatment. Teladoc&#174; doctors do not issue prescriptions for substances controlled by the DEA, non-therapeutic, and/or certain other drugs which may be harmful because of their potential for abuse. Click here to view the current list of DEA controlled substances.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseThree">Is Hello Alvin&#174; health insurance? </a>
+                        <div class="collapse" id="faqCollapseThree" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. Alvin Healthcare, Hello Alvin&#174; and Alvin&#174; are not health insurance, but we help many people who are either without an insurance plan, have a high-deductible health plan (HDHP) or want the convenience of not having to spend time traveling to an Urgent Care or ER for a minor illness for them or their family member. Anyone can use Hello Alvin&#174;, whether insured or not.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseFour">Can I use Hello Alvin or Teladoc outside The United States? </a>
+                        <div class="collapse" id="faqCollapseFour" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. Hello Alvin&#174; and Teladoc consults are not available outside of the United States.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="./assets/libs/smooth-scroll/dist/smooth-scroll.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="./assets/libs/list.js/dist/list.min.js"></script>
+    <script src="./assets/libs/jarallax/dist/jarallax.min.js"></script>
+    <script src="./assets/libs/highlightjs/highlight.pack.min.js"></script>
+    <script src="./assets/libs/flickity-fade/flickity-fade.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwB6IHtq6fyI9imrhLmV-LKIahRYlhazo"></script>
+    <script src="./assets/js/theme.min.js"></script>
+    <script>
+        function modalFn() {
+            document.getElementById("firstPt").setAttribute("style", "display: none;");
+            document.getElementById("secondPt").removeAttribute("style");
+        }
+    </script>
+</body>
+
+</html>
