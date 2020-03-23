@@ -237,6 +237,20 @@
                 </label>
             </div>
         </div>
+        <div id="enterAccount1" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"> </div>
+                            <div class="col-12 text-center py-5"> <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary"> Continue with this Plan </a> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
@@ -255,6 +269,20 @@
                     <p class="mb-0">12 months plan*</p>
                     <div class="arrow"></div>
                 </label>
+            </div>
+        </div>
+        <div id="enterAccount2" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"> </div>
+                            <div class="col-12 text-center py-5"> <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary"> Continue with this Plan </a> </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-4 text-center">
@@ -277,8 +305,22 @@
                 </label>
             </div>
         </div>
+        <div id="enterAccount3" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"> </div>
+                            <div class="col-12 text-center py-5"> <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary"> Continue with this Plan </a> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="enterAccount" style="display: none;" class="container max-auto w-lg-50 mt-4">
+    <div id="enterAccount4" style="display: none;" class="d-only container max-auto w-lg-50 mt-4">
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
@@ -594,22 +636,25 @@
             }
         }
         
-        var enterAccount = document.getElementById("enterAccount");
+        var enterAccount1 = document.getElementById("enterAccount1");
+        var enterAccount2 = document.getElementById("enterAccount2");
+        var enterAccount3 = document.getElementById("enterAccount3");
+        var enterAccount4 = document.getElementById("enterAccount4");
         var telemed1 = document.getElementById("telemed1");
         var telemed2 = document.getElementById("telemed2");
         var telemed3 = document.getElementById("telemed3");
         
-        if (typeof telemed1 != "undefined" && telemed1 != null && enterAccount != "undefined" && enterAccount) {
+        if (typeof telemed1 != "undefined" && telemed1 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3  && enterAccount4 != "undefined" && enterAccount4) {
             telemed1.addEventListener("click", function (e) {
                 radioFn();
             });
         }
-        if (typeof telemed2 != "undefined" && telemed2 != null && enterAccount != "undefined" && enterAccount) {
+        if (typeof telemed2 != "undefined" && telemed2 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3  && enterAccount4 != "undefined" && enterAccount4) {
             telemed2.addEventListener("click", function (e) {
                 radioFn();
             });
         }
-        if (typeof telemed3 != "undefined" && telemed3 != null && enterAccount != "undefined" && enterAccount) {
+        if (typeof telemed3 != "undefined" && telemed3 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3  && enterAccount4 != "undefined" && enterAccount4) {
             telemed3.addEventListener("click", function (e) {
                 radioFn();
             });
@@ -617,13 +662,29 @@
         
         function radioFn(event) {
             if (typeof telemed1 != "undefined" && telemed1 != null && telemed1.checked === true) {
-                enterAccount.setAttribute("style", "display: block;");
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount1.setAttribute("style", "display: block;");
+                enterAccount2.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
             } else if (typeof telemed2 != "undefined" && telemed2 != null && telemed2.checked === true) {
-                enterAccount.setAttribute("style", "display: block;");
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: block;");
             } else if (typeof telemed3 != "undefined" && telemed3 != null && telemed3.checked === true) {
-                enterAccount.setAttribute("style", "display: block;");
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount3.setAttribute("style", "display: block;");
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: none;");
             } else {
-                enterAccount.setAttribute("style", "display: none;");
+                enterAccount4.setAttribute("style", "display: none;");
+                
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
             }
         }
     </script>

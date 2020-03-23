@@ -18499,3 +18499,31 @@ body {
         opacity: 1;
     }
 }
+
+
+@media (max-width: 340px){
+    .nav-link {
+        padding-left: 0;
+    }
+    .nav {
+        padding-left: 0;
+        padding-right: 0;
+    }
+} 
+
+.nav-link,
+.nav-link:hover {
+    color: white !important
+}
+
+@media screen and (max-width: 767px){
+    .d-only {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .m-only {
+        display: none !important;
+    }
+}
