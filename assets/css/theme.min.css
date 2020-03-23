@@ -18459,7 +18459,7 @@ body {
         animation-duration: 0.4s;
         bottom: 0;
         position: fixed;
-        height: 100%;
+        height: 95%;
         width: 100%;
         -webkit-animation-name: protectionSlideIn;
         -webkit-animation-duration: 0.4s;
