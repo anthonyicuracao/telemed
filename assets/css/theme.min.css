@@ -18447,3 +18447,55 @@ body {
     margin: 0 auto;
     max-width: 1500px;
 }
+
+@media (max-width: 767px) {
+    .modal-dialog {
+        margin: 0;
+    }
+
+
+    .modal-content {
+        animation-name: protectionSlideIn;
+        animation-duration: 0.4s;
+        bottom: 0;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        -webkit-animation-name: protectionSlideIn;
+        -webkit-animation-duration: 0.4s;
+    }
+
+    .modal-body {
+        height: 100%;
+        padding-bottom: 3rem !important;
+        overflow-y: scroll;
+    }
+
+    .modal-body .d-flex {
+        height: 100%;
+    }
+}
+
+@-webkit-keyframes protectionSlideIn {
+    from {
+        bottom: -300px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes protectionSlideIn {
+    from {
+        bottom: -300px;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 1;
+    }
+}

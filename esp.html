@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-12 text-center">
                         <a href="thank-you.html" class="btn btn-block btn-secondary" type="button">Verify</a>
@@ -56,7 +56,8 @@
                     <div class="col-12">
                         <div class="text-center">
                             <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">Verify with your personal information</p>
+                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">Verify with your personal information, You may also verify
+                                with your <span style="color: #008ecf;" onclick="modalFn()">verification code</span></p>
                         </div>
                     </div>
                 </div>
@@ -106,31 +107,31 @@
                 <span class="desktop-only">800-287-2226</span>
                 <i class="mobile-only fas fa-phone"></i>
             </a>
-
-            <a class="nav-link text-white" href="index.html">
+            
+            <a class="nav-link text-white" href="eng.html">
                 <span">ENG</span>
             </a>
             </ul>
         </div>
     </nav>
     <section class="desktop-only">
-                    <img src="./assets/img/telmed-content/telemed-header-PC-eng.jpg" alt="Curacao" class="img-fluid">
-            <div style="position: absolute; z-index: 99; top: 0; left: 0;">
-                <div class="row py-12 px-4 align-items-center">
-                    <div class="col-12 col-md-6">
-                        <h2 class="font-size-h1 amplesoft-b display-4">Talk to a Doctor 24/7 by Video or Phone</h2>
-                        <img src="https://icuracao.com/media/assets/calmed/images/hello-alvin-telemed-logo-eng.png" alt="">
+        <img src="./assets/img/telmed-content/telemed-header-PC-eng.jpg" alt="Curacao" class="img-fluid">
+        <div style="position: absolute; z-index: 99; top: 0; left: 0;">
+            <div class="row py-12 px-4 align-items-center">
+                <div class="col-12 col-md-6">
+                    <h2 class="font-size-h1 amplesoft-b display-4">Talk to a Doctor 24/7 by Video or Phone</h2>
+                    <img src="https://icuracao.com/media/assets/calmed/images/hello-alvin-telemed-logo-eng.png" alt="">
+                </div>
+                <div class="col-12 col-md-6 text-left">
+                    <div class="position-relative mt-n4">
+                        <a data-fancybox="" href="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.webm" autopay="true">
+                            <img src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.jpg" alt="..." class="img-fluid w-50 mt-15 mb-5">
+                        </a>
                     </div>
-                    <div class="col-12 col-md-6 text-left">
-                        <div class="position-relative mt-n4">
-                            <a data-fancybox="" href="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.webm" autopay="true">
-                                <img src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.jpg" alt="..." class="img-fluid w-50 mt-15 mb-5">
-                            </a>
-                        </div>
-                        <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">Select a Plan</a>
-                    </div>
+                    <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">Select a Plan</a>
                 </div>
             </div>
+        </div>
     </section>
     <section class="mobile-only mt-n8">
         <div class="row">
@@ -228,6 +229,7 @@
                         <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
                     </h1>
                     <p class="mb-0">No commitment</p>
+                    <div class="arrow"></div>
                 </label>
             </div>
         </div>
@@ -238,7 +240,7 @@
                     <span class="h6 amplesoft-b mb-0">$120</span>
                 </div>
                 <input type="radio" name="familyPlan" value="telemed2" id="telemed2">
-                <label class="primary" for="telemed2">
+                <label class="primary" for="telemed2" style="border: 4px solid #8dc253;">
                     <h4 class="amplesoft mb-n6 mb-0">RECOMMENDED</h4>
                     <h1 class="mt-5 mb-n5">
                         <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
@@ -247,6 +249,7 @@
                         <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
                     </h1>
                     <p class="mb-0">12 months plan*</p>
+                    <div class="arrow"></div>
                 </label>
             </div>
         </div>
@@ -266,11 +269,12 @@
                         <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
                     </h1>
                     <p class="mb-0">24 months plan*</p>
+                    <div class="arrow"></div>
                 </label>
             </div>
         </div>
     </div>
-    <div class="container max-auto w-lg-50 mt-4">
+    <div id="enterAccount" style="display: none;" class="container max-auto w-lg-50 mt-4">
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
@@ -278,8 +282,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"> </div>
-                        <div class="col-12 text-center py-5"> <a href="#reviewComplete" data-toggle="smooth-scroll" class="btn btn-block btn-secondary" type="button"> Continue
-                                with this Plan </a> </div>
+                        <div class="col-12 text-center py-5"> <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary"> Continue with this Plan </a> </div>
                     </div>
                 </form>
             </div>
@@ -292,137 +295,140 @@
             </div>
         </div>
     </div>
-    <div id="reviewComplete" class="p-4">
+    <section id="editCollapseParentOne" style="display: none;" >
+        <div class="p-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
+                        <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
+                        <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">Name<br><span class="gotham-b text-dark">johndoe@gmail.com</span></div>
+                    <div class="col-md-6 col-sm-12">Account Number:<br><span class="gotham-b text-dark">1234-56789</span></div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-8 font-size-lg">Home address<br><span class="gotham-b text-dark">12345 Glenhope Dr Edit La Puente Ca 91744</span> </div>
+                            <div class="col-4 text-right">
+                                <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseOne"> Edit </a> </div>
+                        </div>
+                        <div class="collapse" id="editCollapseOne" data-parent="#editCollapseParentOne">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <form>
+                                        <div class="form-row pb-4">
+                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label class="sr-only" for="mobilePhone">Mobile Phone</label>
+                                                <input class="form-control form-control-sm" id="mobilePhone" type="text" placeholder="Home address"> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
+                            <div class="col-4 text-right">
+                                <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseTwo"> Edit </a> </div>
+                        </div>
+                        <div class="collapse" id="editCollapseTwo" data-parent="#editCollapseParentOne">
+                            <div class="row">
+                                <div class="col text-center">
+                                    
+                                    <form>
+                                        <div class="form-row pb-4">
+                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="enterEmail" type="email" placeholder="Enter Email *"> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-8 font-size-lg">Home Phone<br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
+                            <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseThree"> Edit </a> </div>
+                        </div>
+                        
+                        <div class="collapse" id="editCollapseThree" data-parent="#editCollapseParentOne">
+                            <div class="row">
+                                <div class="col text-center">
+                                    
+                                    <form>
+                                        <div class="form-row pb-4">
+                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label class="sr-only" for="enterEmail">Home Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Home Phone"> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-8 font-size-lg">Mobile Phone <br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
+                            <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#mobilePhone"> Edit </a> </div>
+                        </div>
+                        <div class="collapse" id="mobilePhone" data-parent="#editCollapseParentOne">
+                            <div class="row">
+                                <div class="col text-center">
+                                    
+                                    <form>
+                                        <div class="form-row pb-4">
+                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
+                                                <label class="sr-only" for="modalNewsletterVerticalEmail">Mobile Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Mobile Phone"> </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="genderContainer" class="container max-auto w-lg-50 mt-4">
             <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
-                    <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
-                    <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>
+                <div class="col text-center">
+                    <p class="h-neue-b text-gray-500 text-center">Select gender (required field)</p>
+                    <form>
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group mb-0">
+                                    <label class="sr-only" for="selectGender">Categories:</label>
+                                    <select class="custom-select" id="selectGender">
+                                        <option selected="">All Categories</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center py-5">
+                                <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#firstModal"> Continue</button> </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="editCollapseParentOne" class="container">
-        <form>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">Name<br><span class="gotham-b text-dark">johndoe@gmail.com</span></div>
-                <div class="col-md-6 col-sm-12">Account Number:<br><span class="gotham-b text-dark">1234-56789</span></div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                        <div class="col-8 font-size-lg">Home address<br><span class="gotham-b text-dark">12345 Glenhope Dr Edit La Puente Ca 91744</span> </div>
-                        <div class="col-4 text-right">
-                            <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseOne"> Edit </a> </div>
-                    </div>
-                    <div class="collapse" id="editCollapseOne" data-parent="#editCollapseParentOne">
-                        <div class="row">
-                            <div class="col text-center">
+    </section>
 
-                                <form>
-                                    <div class="form-row pb-4">
-                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                            <label class="sr-only" for="mobilePhone">Mobile Phone</label>
-                                            <input class="form-control form-control-sm" id="mobilePhone" type="text" placeholder="Home address"> </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                            <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                        <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
-                        <div class="col-4 text-right"> 
-                            <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseTwo"> Edit </a> </div>
-                    </div>
-                    <div class="collapse" id="editCollapseTwo" data-parent="#editCollapseParentOne">
-                        <div class="row">
-                            <div class="col text-center">
 
-                                <form>
-                                    <div class="form-row pb-4">
-                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="enterEmail" type="email" placeholder="Enter Email *"> </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                            <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                        <div class="col-8 font-size-lg">Home Phone<br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
-                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseThree"> Edit </a> </div>
-                    </div>
-
-                    <div class="collapse" id="editCollapseThree" data-parent="#editCollapseParentOne">
-                        <div class="row">
-                            <div class="col text-center">
-
-                                <form>
-                                    <div class="form-row pb-4">
-                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                            <label class="sr-only" for="enterEmail">Home Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Home Phone"> </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                            <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="row">
-                        <div class="col-8 font-size-lg">Mobile Phone <br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
-                        <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#mobilePhone"> Edit </a> </div>
-                    </div>
-                    <div class="collapse" id="mobilePhone" data-parent="#editCollapseParentOne">
-                        <div class="row">
-                            <div class="col text-center">
-
-                                <form>
-                                    <div class="form-row pb-4">
-                                        <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                            <label class="sr-only" for="modalNewsletterVerticalEmail">Mobile Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Mobile Phone"> </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                            <button class="btn btn-block btn-default btn-sm" type="button">Save</button> </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="container max-auto w-lg-50 mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <p class="h-neue-b text-gray-500 text-center">Select gender (required field)</p>
-                <form>
-                    <div class="form-row">
-                        <div class="col">
-                            <div class="form-group mb-0">
-                                <label class="sr-only" for="selectGender">Categories:</label>
-                                <select class="custom-select" id="selectGender">
-                                    <option selected="">All Categories</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center py-5">
-                        <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#firstModal"> Continue</button> </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="p-4">
         <div class="container">
             <div class="row">
@@ -480,7 +486,7 @@
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                             </div>
                             <p class="mb-2 font-size-lg font-style-normal">My wife and I have a two-year-old daughter. On a Saturday night she developed a pain in her elbow. I called the Hello Alvin 24-hour Registered Nurse line and within a minute or two I was speaking with a registered nurse who advised me on what to do. Fast, convenient, and the nurse line was included in the Hello Alvin subscription, so there was no fee to use it.</p>
-
+                            
                             <footer class="blockquote-footer h-neue-b">Emin H., St. Louis, Missouri </footer>
                         </blockquote>
                     </div>
@@ -569,8 +575,52 @@
     <script src="./assets/js/format.js"></script>
     <script>
         function modalFn() {
-            document.getElementById("firstPt").setAttribute("style","display: none;");
-            document.getElementById("secondPt").removeAttribute("style");
+            var firstPt = document.getElementById("firstPt");
+            var secondPt = document.getElementById("secondPt");
+
+            var firstPtStyle = firstPt.style.display;
+            var secondPtStyle = secondPt.style.display;
+
+            if (firstPtStyle === "none"){
+                firstPt.removeAttribute("style");
+                secondPt.setAttribute("style", "display: none;");
+            } else {
+                secondPt.removeAttribute("style");
+                firstPt.setAttribute("style", "display: none;");
+            }
+        }
+        
+        var enterAccount = document.getElementById("enterAccount");
+        var telemed1 = document.getElementById("telemed1");
+        var telemed2 = document.getElementById("telemed2");
+        var telemed3 = document.getElementById("telemed3");
+        
+        if (typeof telemed1 != "undefined" && telemed1 != null && enterAccount != "undefined" && enterAccount) {
+            telemed1.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+        if (typeof telemed2 != "undefined" && telemed2 != null && enterAccount != "undefined" && enterAccount) {
+            telemed2.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+        if (typeof telemed3 != "undefined" && telemed3 != null && enterAccount != "undefined" && enterAccount) {
+            telemed3.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+        
+        function radioFn(event) {
+            if (typeof telemed1 != "undefined" && telemed1 != null && telemed1.checked === true) {
+                enterAccount.setAttribute("style", "display: block;");
+            } else if (typeof telemed2 != "undefined" && telemed2 != null && telemed2.checked === true) {
+                enterAccount.setAttribute("style", "display: block;");
+            } else if (typeof telemed3 != "undefined" && telemed3 != null && telemed3.checked === true) {
+                enterAccount.setAttribute("style", "display: block;");
+            } else {
+                enterAccount.setAttribute("style", "display: none;");
+            }
         }
     </script>
 </body>
