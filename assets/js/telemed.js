@@ -297,6 +297,13 @@ function sysDynHeader(sys, keyprod, keytest) {
     sys.keyprod = keyprod;
     sys.keytest = keytest;
 
+    //******** TEMP
+    keytest = 'zzztest';
+    sys.testMode = true;
+    //******** TEMP
+
+
+
     return sys.testMode ? keytest : keyprod;
 
 }
