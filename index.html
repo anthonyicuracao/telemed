@@ -17,6 +17,127 @@
     <title>Curacao - All the brands you love. Low Easy Payments!</title>
 </head>
 
+<!-- pop up begin -->
+<div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fe fe-x" aria-hidden="true"></i>
+            </button>
+            <div class="modal-body" ng-if="data.verifyByCode">
+                <div class="row mb-6">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                            <div ng-if="!data.codeSent">
+                                <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
+                                <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-{{data.cellLast4}}</p>
+                            </div>
+                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                You may also be verified with your <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">personal information</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-if="!data.codeSent">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-block btn-secondary" ng-click="sendCode()"
+                                ng-disabled="sys.loading">
+
+                            <span ng-if="sys.loading">
+                                <i class="fas fa-sync-alt fa-spin"></i>
+                            </span>
+
+                            <span ng-if="!sys.loading">
+                                Send Code
+                            </span>
+                            <span ng-if="sys.loading">
+                                Sending Code...
+                            </span>
+
+                        </button>
+                    </div>
+                </div>
+                <div ng-if="data.codeSent">
+                    <div class="row mt-3">
+                        <div class="col-12 text-center">
+                            <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
+                            <div class="form-group">
+                                <label class="sr-only" for="activationCode">####</label>
+                                <input class="form-control" id="activationCode" type="text" placeholder="####" required
+                                       ng-model="data.pinCode">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-block btn-secondary" ng-click="verifyCode()"
+                                    ng-disabled="sys.loading">
+
+                                <span ng-if="sys.loading">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                </span>
+
+                                <span ng-if="!sys.loading">
+                                    Verify Code
+                                </span>
+                                <span ng-if="sys.loading">
+                                    Verifying Code...
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" ng-if="!data.verifyByCode">
+                <div class="row mb-6">
+                    <div class="col-12">
+                        <div class="text-center">
+                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                Verify with your personal information, You may also verify
+                                with your <span style="color: #008ecf;" ng-click="data.verifyByCode = true;">verification code</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="form-group">
+                            <label class="sr-only" for="last4SSN">Last 4 SSN</label>
+                            <input class="form-control" id="last4SSN" type="text" placeholder="Last 4 SSN">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="col-12 col-md-5">
+                        <div class="form-group">
+                            <label class="sr-only" for="dateOfBirth">Birthday</label>
+                            <input class="is-date form-control" id="dateOfBirth" type="text" placeholder="Birthday">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-1 text-center">
+                        <div class="py-3 small">OR</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
+                            <input class="form-control" id="mothersMaidenName" type="text" placeholder="Mother's Maiden Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="thank-you.html" class="btn btn-block btn-secondary">Verify</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pop up end -->
+
 <body ng-app="telemed" ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
     <nav class="navbar navbar-dark fixed-top bg-primary">
         <div class="container">
@@ -833,125 +954,5 @@
 
 </body>
 
-<!-- pop up begin -->
-<div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="fe fe-x" aria-hidden="true"></i>
-            </button>
-            <div class="modal-body" ng-if="data.verifyByCode">
-                <div class="row mb-6">
-                    <div class="col-12">
-                        <div class="text-center">
-                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                            <div ng-if="!data.codeSent">
-                                <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
-                                <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-{{data.cellLast4}}</p>
-                            </div>
-                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
-                                You may also be verified with your <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">personal information</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" ng-if="!data.codeSent">
-                    <div class="col-12 text-center">
-                        <button class="btn btn-block btn-secondary" ng-click="sendCode()"
-                                ng-disabled="sys.loading">
-
-                            <span ng-if="sys.loading">
-                                <i class="fas fa-sync-alt fa-spin"></i>
-                            </span>
-
-                            <span ng-if="!sys.loading">
-                                Send Code
-                            </span>
-                            <span ng-if="sys.loading">
-                                Sending Code...
-                            </span>
-
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="data.codeSent">
-                    <div class="row mt-3">
-                        <div class="col-12 text-center">
-                            <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
-                            <div class="form-group">
-                                <label class="sr-only" for="activationCode">####</label>
-                                <input class="form-control" id="activationCode" type="text" placeholder="####" required
-                                       ng-model="data.pinCode">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <button class="btn btn-block btn-secondary" ng-click="verifyCode()"
-                                    ng-disabled="sys.loading">
-
-                                <span ng-if="sys.loading">
-                                    <i class="fas fa-sync-alt fa-spin"></i>
-                                </span>
-
-                                <span ng-if="!sys.loading">
-                                    Verify Code
-                                </span>
-                                <span ng-if="sys.loading">
-                                    Verifying Code...
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body" ng-if="!data.verifyByCode">
-                <div class="row mb-6">
-                    <div class="col-12">
-                        <div class="text-center">
-                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
-                                Verify with your personal information, You may also verify
-                                with your <span style="color: #008ecf;" ng-click="data.verifyByCode = true;">verification code</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="form-group">
-                            <label class="sr-only" for="last4SSN">Last 4 SSN</label>
-                            <input class="form-control" id="last4SSN" type="text" placeholder="Last 4 SSN">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row mb-2">
-                    <div class="col-12 col-md-5">
-                        <div class="form-group">
-                            <label class="sr-only" for="dateOfBirth">Birthday</label>
-                            <input class="is-date form-control" id="dateOfBirth" type="text" placeholder="Birthday">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-1 text-center">
-                        <div class="py-3 small">OR</div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
-                            <input class="form-control" id="mothersMaidenName" type="text" placeholder="Mother's Maiden Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <a href="thank-you.html" class="btn btn-block btn-secondary">Verify</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- pop up end -->
 
 </html>
