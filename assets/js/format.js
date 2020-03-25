@@ -46,10 +46,11 @@ $(window).scroll(function() {
 
 var togglePw = document.getElementsByClassName("toggle-password");
 var inputPw = document.getElementById("password");
+var j;
 if (typeof togglePw !== "undefined" && togglePw !== null) {
     if (typeof inputPw !== "undefined" && inputPw !== null) {
         for (let i = 0; i < togglePw.length; i++) {
-            var j = i;
+            j = i;
             viewPasswordFunction(togglePw, inputPw, j);
         }
     }
@@ -76,8 +77,9 @@ var privacyPolicyGroup = document.getElementsByClassName("privacyPolicyGroup");
 
 function privacyPolicyFunction(privacyPolicyContinue, privacyPolicyCheckbox, privacyPolicyGroup) {
     if (typeof privacyPolicyGroup !== "undefined" && privacyPolicyGroup !== null) {
+        var j;
         for (let i = 0; i < privacyPolicyCheckbox.length; i++) {
-            var j = i;
+            j = i;
             privacyPolicyFunction2(privacyPolicyGroup, privacyPolicyCheckbox, j, privacyPolicyContinue);
         }
     }
@@ -98,7 +100,7 @@ privacyPolicyFunction(privacyPolicyContinue, privacyPolicyCheckbox, privacyPolic
 // Floating Action Button
 
 var fab = document.getElementById("fab");
-if (typeof fab != "undefined" && fab != null) {
+if (typeof fab !== "undefined" && fab !== null) {
     window.onscroll = function() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             fab.setAttribute("style", "display: block; transition: all .3s;")
@@ -126,7 +128,7 @@ $("#fab")
 function billingAddressFn() {
     var sameBilling = document.getElementById("sameBilling");
     var addAddress = document.getElementById("addAddress");
-    if (typeof sameBilling != "undefined" && sameBilling != null && addAddress != "undefined" && addAddress != null && sameBilling.checked === true) {
+    if (typeof sameBilling !== "undefined" && sameBilling !== null && addAddress !== "undefined" && addAddress !== null && sameBilling.checked === true) {
         addAddress.setAttribute("style", "display: none;");
     } else {
         addAddress.setAttribute("style", "display: block;");
@@ -141,41 +143,41 @@ var option4 = document.getElementById("thirtyFour2");
 var option2 = document.getElementById("thirtyFour3");
 var option3 = document.getElementById("thirtyFour4");
 var label = document.getElementById("insideLabel");
-if (typeof option1 != "undefined" && option1 != null && information != "undefined" && information) {
+if (typeof option1 !== "undefined" && option1 !== null && information !== "undefined" && information) {
     option1.addEventListener("click", function() {
         radioFn();
     });
 }
-if (typeof option2 != "undefined" && option2 != null && information != "undefined" && information) {
+if (typeof option2 !== "undefined" && option2 !== null && information !== "undefined" && information) {
     option2.addEventListener("click", function() {
         radioFn();
     });
 }
-if (typeof option3 != "undefined" && option3 != null && information != "undefined" && information) {
+if (typeof option3 !== "undefined" && option3 !== null && information !== "undefined" && information) {
     option3.addEventListener("click", function() {
         radioFn();
     });
 }
-if (typeof option4 != "undefined" && option4 != null && information != "undefined" && information) {
+if (typeof option4 !== "undefined" && option4 !== null && information !== "undefined" && information) {
     option4.addEventListener("click", function() {
         radioFn();
     });
 }
 
 function radioFn() {
-    if (typeof option1 != "undefined" && option1 != null && option1.checked === true) {
+    if (typeof option1 !== "undefined" && option1 !== null && option1.checked === true) {
         label.innerHTML = "Account number";
         information.setAttribute("type", "text");
         information.removeEventListener('keydown', enforceFormat);
         information.removeEventListener('keyup', formatToPhone);
         information.removeEventListener('blur', formatToPhone);
-    } else if (typeof option2 != "undefined" && option2 != null && option2.checked === true) {
+    } else if (typeof option2 !== "undefined" && option2 !== null && option2.checked === true) {
         label.innerHTML = "Email address";
         information.setAttribute("type", "email");
         information.removeEventListener('keydown', enforceFormat);
         information.removeEventListener('keyup', formatToPhone);
         information.removeEventListener('blur', formatToPhone);
-    } else if (typeof option3 != "undefined" && option3 != null && option3.checked === true) {
+    } else if (typeof option3 !== "undefined" && option3 !== null && option3.checked === true) {
         label.innerHTML = "Phone number";
         information.setAttribute("type", "tel");
         var typeTel = document.querySelectorAll("input[type='tel']");
@@ -187,7 +189,7 @@ function radioFn() {
                 tel.addEventListener('blur', formatToPhone);
             }
         }
-    } else if (typeof option4 != "undefined" && option4 != null && option4.checked === true) {
+    } else if (typeof option4 !== "undefined" && option4 !== null && option4.checked === true) {
         label.innerHTML = "Username";
         information.setAttribute("type", "text");
         information.removeEventListener('keydown', enforceFormat);
@@ -281,7 +283,7 @@ function showMore(x, y, u, z) {
 var isDate = document.getElementsByClassName("is-date");
 if (typeof isDate !== "undefined" && isDate !== null) {
     for (let i = 0; i < isDate.length; i++) {
-        var j = isDate[i];
+        j = isDate[i];
         testFn(j);
     }
 }
@@ -298,7 +300,7 @@ function testFn(x) {
         if (values[0]) values[0] = checkValue(values[0], 12);
         if (values[1]) values[1] = checkValue(values[1], 31);
         var output = values.map(function(v, i) {
-            return v.length == 2 && i < 2 ? v + " / " : v;
+            return v.length === 2 && i < 2 ? v + " / " : v;
         });
         this.value = output.join("")
             .substr(0, 14);
@@ -311,7 +313,7 @@ function testFn(x) {
                 return v.replace(/\D/g, "");
             });
         var output = "";
-        if (values.length == 3) {
+        if (values.length === 3) {
             var year = values[2].length !== 4 ? parseInt(values[2]) + 2000 : parseInt(values[2]);
             var month = parseInt(values[0]) - 1;
             var day = parseInt(values[1]);
@@ -321,7 +323,7 @@ function testFn(x) {
                 var dates = [d.getMonth() + 1, d.getDate(), d.getFullYear()];
                 output = dates.map(function(v) {
                         v = v.toString();
-                        return v.length == 1 ? "0" + v : v;
+                        return v.length === 1 ? "0" + v : v;
                     })
                     .join(" / ");
             }
@@ -335,12 +337,12 @@ function testFn(x) {
 
 
 function checkValue(str, max) {
-    if (str.charAt(0) !== "0" || str == "00") {
+    if (str.charAt(0) !== "0" || str === "00") {
         var num = parseInt(str);
         if (isNaN(num) || num <= 0 || num > max) num = 1;
         str = num > parseInt(max.toString()
                 .charAt(0)) && num.toString()
-            .length == 1 ? "0" + num : num.toString();
+            .length === 1 ? "0" + num : num.toString();
     }
     return str;
 }
