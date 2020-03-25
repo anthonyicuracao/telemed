@@ -17,127 +17,6 @@
     <title>Curacao - All the brands you love. Low Easy Payments!</title>
 </head>
 
-<!-- pop up begin -->
-<div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="fe fe-x" aria-hidden="true"></i>
-            </button>
-            <div class="modal-body" ng-if="data.verifyByCode">
-                <div class="row mb-6">
-                    <div class="col-12">
-                        <div class="text-center">
-                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                            <div ng-if="!data.codeSent">
-                                <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
-                                <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-{{data.cellLast4}}</p>
-                            </div>
-                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
-                                You may also be verified with your <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">personal information</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" ng-if="!data.codeSent">
-                    <div class="col-12 text-center">
-                        <button class="btn btn-block btn-secondary" ng-click="sendCode()"
-                                ng-disabled="sys.loading">
-
-                            <span ng-if="sys.loading">
-                                <i class="fas fa-sync-alt fa-spin"></i>
-                            </span>
-
-                            <span ng-if="!sys.loading">
-                                Send Code
-                            </span>
-                            <span ng-if="sys.loading">
-                                Sending Code...
-                            </span>
-
-                        </button>
-                    </div>
-                </div>
-                <div ng-if="data.codeSent">
-                    <div class="row mt-3">
-                        <div class="col-12 text-center">
-                            <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
-                            <div class="form-group">
-                                <label class="sr-only" for="activationCode">####</label>
-                                <input class="form-control" id="activationCode" type="text" placeholder="####" required
-                                       ng-model="data.pinCode">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <button class="btn btn-block btn-secondary" ng-click="verifyCode()"
-                                    ng-disabled="sys.loading">
-
-                                <span ng-if="sys.loading">
-                                    <i class="fas fa-sync-alt fa-spin"></i>
-                                </span>
-
-                                <span ng-if="!sys.loading">
-                                    Verify Code
-                                </span>
-                                <span ng-if="sys.loading">
-                                    Verifying Code...
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body" ng-if="!data.verifyByCode">
-                <div class="row mb-6">
-                    <div class="col-12">
-                        <div class="text-center">
-                            <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                            <p class="mb-0 text-gray-500 gotham-book font-size-lg">
-                                Verify with your personal information, You may also verify
-                                with your <span style="color: #008ecf;" ng-click="data.verifyByCode = true;">verification code</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="form-group">
-                            <label class="sr-only" for="last4SSN">Last 4 SSN</label>
-                            <input class="form-control" id="last4SSN" type="text" placeholder="Last 4 SSN">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row mb-2">
-                    <div class="col-12 col-md-5">
-                        <div class="form-group">
-                            <label class="sr-only" for="dateOfBirth">Birthday</label>
-                            <input class="is-date form-control" id="dateOfBirth" type="text" placeholder="Birthday">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-1 text-center">
-                        <div class="py-3 small">OR</div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
-                            <input class="form-control" id="mothersMaidenName" type="text" placeholder="Mother's Maiden Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <a href="thank-you.html" class="btn btn-block btn-secondary">Verify</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- pop up end -->
-
 <body ng-app="telemed" ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
     <nav class="navbar navbar-dark fixed-top bg-primary">
         <div class="container">
@@ -264,7 +143,8 @@
     <div class="row" style="max-width: 100%; margin: 0 auto;">
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
-                <input type="radio" name="familyPlan" value="telemed1" id="telemed1" ng-model="data.plan">
+                <input type="radio" name="familyPlan" value="M" id="telemed1"
+                       ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed1">
                     <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
                     <h1 class="mt-5 mb-n5">
@@ -281,17 +161,37 @@
         <div id="enterAccount1" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
             <div class="row">
                 <div class="col text-center">
-                    <p class="h-neue-b text-gray-500 text-center"> Enter your Curacao Credit account </p>
+                    <p class="h-neue-b text-gray-500 text-center">
+                        Enter your Curacao Credit account
+                        <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
+                    </p>
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <label class="sr-only" for="modalNewsletterVerticalEmail">Curacao Credit account</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail">
+                                    Curacao Credit account
+                                </label>
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"
+                                       ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
-                                <a ng-click="continueWithPlan()"
-                                   data-toggle="smooth-scroll" class="btn btn-block btn-secondary">
-                                    Continue with this Plan
-                                </a>
+                                <button ng-click="continueWithPlan()"
+                                        class="btn btn-block btn-secondary"
+                                        ng-disabled="!isOk('cust_id') || sys.loading">
+
+                                    <span ng-if="sys.loading">
+                                        <i class="fas fa-sync-alt fa-spin"></i>
+                                    </span>
+
+                                    <span ng-if="!sys.loading">
+                                        Continue with this Plan
+                                    </span>
+                                    <span ng-if="sys.loading">
+                                        Pulling Curacao Account...
+                                    </span>
+
+
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -304,7 +204,8 @@
                     <strong class="font-size-xs amplesoft-b">SAVE</strong>
                     <span class="h6 amplesoft-b mb-0">$120</span>
                 </div>
-                <input type="radio" name="familyPlan" value="telemed2" id="telemed2" ng-model="data.plan">
+                <input type="radio" name="familyPlan" value="1" id="telemed2"
+                       ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed2" ng-style="data.plan === null ? {'border': '4px solid #8dc253'} : {}">
                     <h4 class="amplesoft mb-n6 mb-0">RECOMMENDED</h4>
                     <h1 class="mt-5 mb-n5">
@@ -335,9 +236,23 @@
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
-                                <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary">
-                                    Continue with this Plan++
-                                </a>
+                                <button ng-click="continueWithPlan()"
+                                        class="btn btn-block btn-secondary"
+                                        ng-disabled="!isOk('cust_id') || sys.loading">
+
+                                    <span ng-if="sys.loading">
+                                        <i class="fas fa-sync-alt fa-spin"></i>
+                                    </span>
+
+                                    <span ng-if="!sys.loading">
+                                        Continue with this Plan
+                                    </span>
+                                    <span ng-if="sys.loading">
+                                        Pulling Curacao Account...
+                                    </span>
+
+
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -350,7 +265,8 @@
                     <strong class="font-size-xs amplesoft-b">SAVE</strong>
                     <span class="h6 amplesoft-b mb-0">$360</span>
                 </div>
-                <input type="radio" name="familyPlan" value="telemed3" id="telemed3" ng-model="data.plan">
+                <input type="radio" name="familyPlan" value="2" id="telemed3"
+                       ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed3">
                     <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
                     <h1 class="mt-5 mb-n5">
@@ -370,7 +286,6 @@
                     <p class="h-neue-b text-gray-500 text-center">
                         Enter your Curacao Credit account
                         <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
-
                     </p>
                     <form>
                         <div class="form-row">
@@ -382,9 +297,23 @@
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
-                                <a onclick="document.getElementById('editCollapseParentOne').removeAttribute('style')" href="#editCollapseParentOne" data-toggle="smooth-scroll" class="btn btn-block btn-secondary">
-                                    Continue with this Plan 2
-                                </a>
+                                <button ng-click="continueWithPlan()"
+                                        class="btn btn-block btn-secondary"
+                                        ng-disabled="!isOk('cust_id') || sys.loading">
+
+                                    <span ng-if="sys.loading">
+                                        <i class="fas fa-sync-alt fa-spin"></i>
+                                    </span>
+
+                                    <span ng-if="!sys.loading">
+                                        Continue with this Plan
+                                    </span>
+                                    <span ng-if="sys.loading">
+                                        Pulling Curacao Account...
+                                    </span>
+
+
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -440,123 +369,17 @@
         </div>
     </div>
     <section id="editCollapseParentOne" ng-if="data.codeVerified">
-        <div class="p-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
-                        <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
-                        <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
+                    <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
+                    <!--<p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>-->
                 </div>
             </div>
         </div>
         <div class="container">
-            <form>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">Name<br><span class="gotham-b text-dark">John Doe</span></div>
-                    <div class="col-md-6 col-sm-12">Account Number:<br><span class="gotham-b text-dark">1234-56789</span></div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-8 font-size-lg">Home address<br><span class="gotham-b text-dark">12345 Glenhope Dr Edit La Puente Ca 91744</span> </div>
-                            <div class="col-4 text-right">
-                                <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseOne"> Edit </a>
-                            </div>
-                        </div>
-                        <div class="collapse" id="editCollapseOne" data-parent="#editCollapseParentOne">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <form>
-                                        <div class="form-row pb-4">
-                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                                <label class="sr-only" for="mobilePhone">Mobile Phone</label>
-                                                <input class="form-control form-control-sm" id="mobilePhone" type="text" placeholder="Home address">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-8 font-size-lg"> Email <br /><span class="gotham-b text-dark">johndoe@gmail.com</span> </div>
-                            <div class="col-4 text-right">
-                                <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseTwo"> Edit </a>
-                            </div>
-                        </div>
-                        <div class="collapse" id="editCollapseTwo" data-parent="#editCollapseParentOne">
-                            <div class="row">
-                                <div class="col text-center">
-
-                                    <form>
-                                        <div class="form-row pb-4">
-                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                                <label class="sr-only" for="modalNewsletterVerticalEmail">Enter Email *</label> <input class="form-control form-control-sm" id="enterEmail" type="email" placeholder="Enter Email *">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-8 font-size-lg">Home Phone<br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
-                            <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#editCollapseThree"> Edit </a> </div>
-                        </div>
-
-                        <div class="collapse" id="editCollapseThree" data-parent="#editCollapseParentOne">
-                            <div class="row">
-                                <div class="col text-center">
-
-                                    <form>
-                                        <div class="form-row pb-4">
-                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                                <label class="sr-only" for="enterEmail">Home Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Home Phone">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="row">
-                            <div class="col-8 font-size-lg">Mobile Phone <br /><span class="gotham-b text-dark">(***)***-4567</span> </div>
-                            <div class="col-4 text-right"> <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#mobilePhone"> Edit </a> </div>
-                        </div>
-                        <div class="collapse" id="mobilePhone" data-parent="#editCollapseParentOne">
-                            <div class="row">
-                                <div class="col text-center">
-
-                                    <form>
-                                        <div class="form-row pb-4">
-                                            <div class="mb-4 col-lg-6 col-md-6 col-sm-12">
-                                                <label class="sr-only" for="modalNewsletterVerticalEmail">Mobile Phone</label> <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="tel" placeholder="Mobile Phone">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                                                <button class="btn btn-block btn-default btn-sm" type="button">Save</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <h3 class="bg-primary text-center">TEMP</h3>
-            <form>
+            <form class="bg-primary-soft p-3">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -681,23 +504,87 @@
                         </div>
                     </div>
 
-                    <div class="col-12 d-flex justify-content-center">
-                        <button class="btn btn-primary" type="submit" ng-if="!data.verified" ng-click="data.verified = true;"
-                                ng-disabled="!step3buttonOk()">
-                            Verify Information
-                        </button>
-                        <h3 class="py-1 be-bold" ng-if="data.verified">
-                            <span class="mr-2 fas fa-check fa-1x text-success"></span>
-                            Verified
-                        </h3>
+                    <div class="col-12">
+                        <hr class="border-dashed d-blockmy-4 bg-primary">
+                    </div>
 
+                    <div class="col-lg-4">
+                        <h5 class="m-0">
+                            Please, choose a password for your Hello Alvin account.
+                        </h5>
+                        <p>
+                            <b>Minimum requirements:</b> 8 characters long, 1 uppercase letter,
+                            1 lowercase letter and 1 number.
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                Password
+                                <span ng-if="!isOk('password')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
+                            </label>
+                            <input id="password" class="form-control" type="password" ng-model="data.password">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>
+                                Confirm Password
+                                <span ng-if="!isOk('password2') || data.password !== data.password2">
+                                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                                </span>
+                            </label>
+                            <input id="password2" class="form-control" type="password" ng-model="data.password2">
+                        </div>
                     </div>
                 </div>
             </form>
-            <h3 class="bg-primary text-center">TEMP</h3>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-2 text-primary h-neue-black p-3 m-0">Submit Your Order</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container p-3 bg-primary-soft">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-left">
+                        <h5 class="text-primary m-0">Customer:</h5>
+                        <h4 class="mb-1">{{data.curacao.F_NAME}} {{data.curacao.L_NAME}}</h4>
+                        <p class="mb-1 fs--1">
+                            {{data.curacao.STREET}}<br>{{data.curacao.CITY}}, {{data.curacao.CA}} {{data.curacao.ZIP}}
+                        </p>
+                        <p class="mb-0 fs--1"> <strong>Email: </strong><a ng-href="mailto:{{data.curacao.EMAIL}}">{{data.curacao.EMAIL}}</a></p>
+                        <p class="mb-0 fs--1"> <strong>Phone: </strong><a ng-href="tel:{{data.curacao.CELL}}">{{data.curacao.CELL}}</a></p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <hr class="border-dashed d-block d-md-none my-4">
+                        <h4 class="font-weight-bold">All Total: <span class="text-primary">${{data.price}}</span></h4>
+                        <button class="btn btn-success mt-3 px-5" type="submit" ng-click="pushTeleMed()"
+                                ng-disabled="!confirmButtonOk()"
+                                ng-if="!data.paid">
+
+                            <span ng-if="sys.loading">
+                                <i class="fas fa-sync-alt fa-spin"></i>
+                            </span>
+
+                            Confirm &amp; Pay
+                        </button>
+                        <button class="btn btn-success mt-3 px-5" type="submit" ng-click=""
+                                ng-disabled="true"
+                                ng-if="data.paid">
+                            Confirmed &amp; Paid!
+                        </button>
+                        <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
-        <div id="genderContainer" class="container max-auto w-lg-50 mt-4">
+        <!--<div id="genderContainer" class="container max-auto w-lg-50 mt-4">
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">Select gender (required field)</p>
@@ -721,7 +608,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>-->
     </section>
 
 
@@ -950,6 +837,151 @@
             }
         }
     </script>
+
+    <!-- pop up begin -->
+    <div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fe fe-x" aria-hidden="true"></i>
+                </button>
+                <div class="modal-body" ng-if="data.verifyByCode">
+                    <div class="row mb-6">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                                <div ng-if="!data.codeSent">
+                                    <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
+                                    <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-{{data.cellLast4}}</p>
+                                </div>
+                                <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                    You may also be verified with your
+                                    <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">personal information</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="!data.codeSent">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-block btn-secondary" ng-click="sendCode()"
+                                    ng-disabled="sys.loading">
+
+                                <span ng-if="sys.loading">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                </span>
+
+                                <span ng-if="!sys.loading">
+                                    Send Code
+                                </span>
+                                <span ng-if="sys.loading">
+                                    Sending Code...
+                                </span>
+
+                            </button>
+                        </div>
+                    </div>
+                    <div ng-if="data.codeSent">
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
+                                <div class="form-group">
+                                    <label class="sr-only" for="activationCode">####</label>
+                                    <input class="form-control" id="activationCode" type="text" placeholder="####" required
+                                           ng-class="{'bg-danger-soft':!isOk('pinCode')}"
+                                           ng-change="onChange('pinCode')"
+                                           ng-model="data.pinCode">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <button class="btn btn-block btn-secondary" ng-click="verifyCode()"
+                                        ng-disabled="!isOk('pinCode') || sys.loading">
+
+                                    <span ng-if="sys.loading">
+                                        <i class="fas fa-sync-alt fa-spin"></i>
+                                    </span>
+
+                                    <span ng-if="!sys.loading">
+                                        Verify Code
+                                    </span>
+                                    <span ng-if="sys.loading">
+                                        Verifying Code...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="modal-body" ng-if="!data.verifyByCode">
+                    <div class="row mb-6">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                                <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                    Verify with your personal information, You may also be verified with a
+                                    <a href="#!" style="color: #008ecf;" ng-click="data.verifyByCode = true;">verification code</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="form-group">
+                                <label class="sr-only" for="last4ssn">Last 4 SSN</label>
+                                <input class="form-control p-2" id="last4ssn" type="text" placeholder="Last 4 SSN"
+                                       ng-class="{'bg-danger-soft':data.last4ssn && !isOk('last4ssn')}"
+                                       ng-change="onChange('last4ssn')"
+                                       ng-model="data.last4ssn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label class="sr-only" for="dateOfBirth">Birthday</label>
+                                <input class="form-control p-2" id="dateOfBirth" type="date" placeholder="Birthday"
+                                       ng-class="{'bg-danger-soft':data.dob && !isOk('dob')}"
+                                       ng-model="data.dob">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-1 text-center">
+                            <div class="py-3 small">OR</div>
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <div class="form-group">
+                                <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
+                                <input class="form-control p-2" id="mothersMaidenName" type="text" placeholder="Mother's Maiden Name"
+                                       ng-class="{'bg-danger-soft':data.mmn && !isOk('mmn')}"
+                                       ng-model="data.mmn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn btn-block btn-secondary" ng-click="verifyCode()"
+                                    ng-disabled="(!isOk('last4ssn') && !isOk('dob') && !isOk('mmn')) || sys.loading">
+
+                                <span ng-if="sys.loading">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                </span>
+
+                                <span ng-if="!sys.loading">
+                                    Verify Info
+                                </span>
+                                <span ng-if="sys.loading">
+                                    Verifying Info...
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- pop up end -->
 
 
 </body>
