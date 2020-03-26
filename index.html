@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="en">
+<html lang="en" ng-app="telemed">
 
 <head>
     <meta charset="utf-8">
@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="./assets/fonts/feather/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./assets/css/theme.min.css">
-    <title>Curacao - All the brands you love. Low Easy Payments!</title>
+    <title ng-if="sys.idioma === 'en'">Curacao - All the brands you love. Low Easy Payments!</title>
+    <title ng-if="sys.idioma === 'es'">TelMED - ¡Habla con un doctor 24/7 en video o por teléfono!</title>
+
 </head>
 
-<body ng-app="telemed" ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
-    <nav class="navbar navbar-dark fixed-top bg-primary">
+<body ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
+    <nav class="navbar navbar-dark fixed-top bg-primary p-1">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img alt="curacao" class="telemed-logo" src="./assets/img/telemed/logo.png">
@@ -28,8 +30,9 @@
                 <i class="mobile-only fas fa-phone"></i>
             </a>
 
-            <a class="nav-link text-white" href="esp.html">
-                <span>ESP</span>
+            <a class="nav-link text-white" href="" ng-click="sys.setIdioma()">
+                <!--<span><i class="fas fa-language fa-3x"></i></span>-->
+                <span>{{'lang' | translate | uppercase}}</span>
             </a>
         </div>
     </nav>
@@ -37,11 +40,11 @@
         <img src="./assets/img/telmed-content/telemed-header-PC-eng.jpg" alt="Curacao" class="img-fluid">
         <div style="position: absolute; z-index: 99; top: 0; ">
             <div class="row py-12 px-4 align-items-center">
-                <div class="col-12 col-md-6">
-                    <h2 class="font-size-h1 amplesoft-b display-4">Talk to a Doctor 24/7 by Video or Phone</h2>
-                    <img class="w-50" src="./assets/img/telmed-content/hello-alvin-telemed-logo-eng.png" alt="">
+                <div class="col-12 col-md-5">
+                    <h1 style="font-size:300%;" class="amplesoft-b ">{{'talkTo' | translate}}</h1>
+                    <img class="w-50" ng-src="./assets/img/telmed-content/hello-alvin-telemed-logo-{{getIdioma()}}.png" alt="">
                 </div>
-                <div class="col-12 col-md-6 text-left">
+                <div class="col-12 col-md-7 text-left">
                     <div class="position-relative mt-n4">
                         <video style="max-width: 350px;" class="img-fluid w-50 mt-14 mb-5" controls muted autoplay loop>
                             <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit-smaller.mp4" type="video/mp4">
@@ -49,7 +52,7 @@
                             <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.ogv" type="video/ogv">
                         </video>
                     </div>
-                    <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">Select a Plan</a>
+                    <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">{{'selectPlan' | translate}}</a>
                 </div>
             </div>
         </div>
@@ -57,7 +60,7 @@
     <section class="mobile-only mt-n8">
         <div class="row">
             <div class="col">
-                <img src="https://icuracao.com/media/assets/calmed/images/telemed-header-MOB-eng.jpg" alt="Curacao | TeleMED" class="w-100 h-auto mt-2">
+                <img ng-src="https://icuracao.com/media/assets/calmed/images/telemed-header-MOB-{{getIdioma()}}.jpg" alt="Curacao | TeleMED" class="w-100 h-auto mt-2">
             </div>
         </div>
         <div class="row mt-n15 align-items-center">
@@ -69,8 +72,8 @@
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.ogv" type="video/ogv">
                     </video>
                 </div>
-                <p class="amplesoft-b" style="font-size: 3.5rem; line-height: 1;">Talk to a Doctor 24/7 by Video or Phone</p>
-                <div class="mx-3"> <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn-block btn btn-secondary"> Select a Plan </a> </div>
+                <p class="amplesoft-b" style="font-size: 2.5rem; line-height: 1;">{{'talkTo'|translate}}</p>
+                <div class="mx-3"> <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn-block btn btn-secondary">{{'selectPlan' | translate}}</a> </div>
             </div>
         </div>
     </section>
@@ -78,29 +81,30 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="mb-4 text-primary h-neue-black">Hello Alvin Subscriptions Benefits</h3>
+                    <h3 class="mb-4 text-primary h-neue-black">{{'helloAlvinSubscriptionsBenefits' | translate}}</h3>
                     <div class="row py-3 bg-light">
                         <div class="pc-only col-12 col-md-4">
                             <div class="d-flex h-100 justify-content-center">
-                                <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3" src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-eng.png" alt="">
+                                <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3"
+                                     ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{getIdioma()}}.png" alt="">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="d-flex h-100">
                                 <ul class="align-self-center checkmark-group mb-0">
-                                    <li class="checkmark-item py-2">Access to US Certified Doctor 24/7 via Phone or Video</li>
-                                    <li class="checkmark-item py-2">Free 24/7 Nurse Line</li>
-                                    <li class="checkmark-item py-2">One FREE MD consultation per month</li>
-                                    <li class="checkmark-item py-2">Free Discount Pharmacy Card</li>
+                                    <li class="checkmark-item py-2">{{'accessToUS' | translate}}</li>
+                                    <li class="checkmark-item py-2">{{'free24' | translate}}</li>
+                                    <li class="checkmark-item py-2">{{'oneFREE'|translate}}</li>
+                                    <li class="checkmark-item py-2">{{'freeDiscount'|translate}}</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="d-flex h-100">
                                 <ul class="align-self-center checkmark-group mb-0">
-                                    <li class="checkmark-item py-2">One FREE MD consultation per month</li>
-                                    <li class="checkmark-item py-2">Free Email a Specialist Services</li>
-                                    <li class="checkmark-item py-2">Only $15 per additional consultation</li>
+                                    <li class="checkmark-item py-2">{{'oneFREE'|translate}}</li>
+                                    <li class="checkmark-item py-2">{{'freeEmail'|translate}}</li>
+                                    <li class="checkmark-item py-2">{{'only$15'|translate}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -113,8 +117,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h4 class="text-white gotham-cb">Coronavirus (COVID-19) We're here for you</h4>
-                    <h5 class="text-white mb-0 gotham-cl">As the coronavirus outbreak evolves, the need for our care has never been greater. As a result, you may experience extended wait times.</h5>
+                    <h4 class="text-white gotham-cb">{{'coronavirus'|translate}}</h4>
+                    <h5 class="text-white mb-0 gotham-cl">{{'astheCoronavirus'|translate}}</h5>
                 </div>
             </div>
         </div>
@@ -124,7 +128,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex h-100 justify-content-center">
-                        <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3" src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-eng.png" alt="">
+                        <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3"
+                             ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{getIdioma()}}.png" alt="">
                     </div>
                 </div>
             </div>
@@ -134,8 +139,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="mb-2 text-primary h-neue-black">Select your plan now</h3>
-                    <p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap to select a plan, enter your Curacao Account and click on “Continue”</p>
+                    <h3 class="mb-2 text-primary h-neue-black">{{'selectYourPlan'|translate}}</h3>
+                    <p class="mb-4 text-gray-500 gotham-book font-size-lg">{{'tapToSelect'|translate}}</p>
                 </div>
             </div>
         </div>
@@ -146,14 +151,14 @@
                 <input type="radio" name="familyPlan" value="M" id="telemed1"
                        ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed1">
-                    <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
+                    <h4 class="amplesoft mb-n6 mb-0">{{'monthly'|translate}}</h4>
                     <h1 class="mt-5 mb-n5">
                         <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
                         <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">40</span>
                         <span class="amplesoft-b" style="font-size: 2.5rem;">00</span>
-                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ {{'month'|translate}}</span>
                     </h1>
-                    <p class="mb-0">No commitment</p>
+                    <p class="mb-0">{{'noCommitment'|translate}}</p>
                     <div class="arrow"></div>
                 </label>
             </div>
@@ -162,16 +167,16 @@
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
-                        Enter your Curacao Credit account
+                        {{'enterYourCuracao'|translate}}
                         <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                     </p>
                     <form>
                         <div class="form-row">
                             <div class="col">
                                 <label class="sr-only" for="modalNewsletterVerticalEmail">
-                                    Curacao Credit account
+                                    {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -184,13 +189,11 @@
                                     </span>
 
                                     <span ng-if="!sys.loading">
-                                        Continue with this Plan
+                                        {{'continueWith'|translate}}
                                     </span>
                                     <span ng-if="sys.loading">
-                                        Pulling Curacao Account...
+                                        {{'pullingCuracao'|translate}}...
                                     </span>
-
-
                                 </button>
                             </div>
                         </div>
@@ -201,20 +204,20 @@
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
-                    <strong class="font-size-xs amplesoft-b">SAVE</strong>
+                    <strong class="font-size-xs amplesoft-b">{{'save'|translate}}</strong>
                     <span class="h6 amplesoft-b mb-0">$120</span>
                 </div>
                 <input type="radio" name="familyPlan" value="1" id="telemed2"
                        ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed2" ng-style="data.plan === null ? {'border': '4px solid #92c039'} : {}">
-                    <h4 class="amplesoft mb-n6 mb-0">RECOMMENDED</h4>
+                    <h4 class="amplesoft mb-n6 mb-0">{{'recommended'|translate}}</h4>
                     <h1 class="mt-5 mb-n5">
                         <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
                         <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">29</span>
                         <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
-                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ {{'month'|translate}}</span>
                     </h1>
-                    <p class="mb-0">12 months plan*</p>
+                    <p class="mb-0">{{'prepaid12'|translate}}*</p>
                     <div class="arrow"></div>
                 </label>
             </div>
@@ -223,16 +226,16 @@
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
-                        Enter your Curacao Credit account
+                        {{'enterYourCuracao'|translate}}
                         <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                     </p>
                     <form>
                         <div class="form-row">
                             <div class="col">
                                 <label class="sr-only" for="modalNewsletterVerticalEmail">
-                                    Curacao Credit account
+                                    {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -245,13 +248,11 @@
                                     </span>
 
                                     <span ng-if="!sys.loading">
-                                        Continue with this Plan
+                                        {{'continueWith'|translate}}
                                     </span>
                                     <span ng-if="sys.loading">
-                                        Pulling Curacao Account...
+                                        {{'pullingCuracao'|translate}}...
                                     </span>
-
-
                                 </button>
                             </div>
                         </div>
@@ -262,20 +263,20 @@
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
-                    <strong class="font-size-xs amplesoft-b">SAVE</strong>
+                    <strong class="font-size-xs amplesoft-b">{{'save'|translate}}</strong>
                     <span class="h6 amplesoft-b mb-0">$360</span>
                 </div>
                 <input type="radio" name="familyPlan" value="2" id="telemed3"
                        ng-model="data.plan" ng-change="selectPlan()">
                 <label class="primary" for="telemed3">
-                    <h4 class="amplesoft mb-n6 mb-0">BEST VALUE</h4>
+                    <h4 class="amplesoft mb-n6 mb-0">{{'bestValue'|translate}}</h4>
                     <h1 class="mt-5 mb-n5">
                         <span class="amplesoft-b mr-n2" style="font-size: 2.5rem;">$</span>
                         <span class="amplesoft-b mr-n2" style="font-size: 5rem; vertical-align: top;">24</span>
                         <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
-                        <span class="font-size-lg amplesoft-m ml-n2">/ Month</span>
+                        <span class="font-size-lg amplesoft-m ml-n2">/ {{'month'|translate}}</span>
                     </h1>
-                    <p class="mb-0">24 months plan*</p>
+                    <p class="mb-0">{{'prepaid24'|translate}}*</p>
                     <div class="arrow"></div>
                 </label>
             </div>
@@ -284,16 +285,16 @@
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
-                        Enter your Curacao Credit account
+                        {{'enterYourCuracao'|translate}}
                         <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                     </p>
                     <form>
                         <div class="form-row">
                             <div class="col">
                                 <label class="sr-only" for="modalNewsletterVerticalEmail">
-                                    Curacao Credit account
+                                    {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -306,13 +307,11 @@
                                     </span>
 
                                     <span ng-if="!sys.loading">
-                                        Continue with this Plan
+                                        {{'continueWith'|translate}}
                                     </span>
                                     <span ng-if="sys.loading">
-                                        Pulling Curacao Account...
+                                        {{'pullingCuracao'|translate}}...
                                     </span>
-
-
                                 </button>
                             </div>
                         </div>
@@ -325,16 +324,16 @@
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center">
-                    Enter your Curacao Credit account
+                    {{'enterYourCuracao'|translate}}
                     <span ng-if="!isOk('cust_id')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                 </p>
                 <form>
                     <div class="form-row">
                         <div class="col">
                             <label class="sr-only" for="modalNewsletterVerticalEmail">
-                                Curacao Credit account
+                                {{'curacaoCredit'|translate}}
                             </label>
-                            <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="Curacao Credit account"
+                            <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                    ng-model="data.cust_id" ng-change="onChange('cust_id')">
                         </div>
                         <div class="col-12 text-center py-5">
@@ -347,13 +346,11 @@
                                 </span>
 
                                 <span ng-if="!sys.loading">
-                                    Continue with this Plan
+                                    {{'continueWith'|translate}}
                                 </span>
                                 <span ng-if="sys.loading">
-                                    Pulling Curacao Account...
+                                    {{'pullingCuracao'|translate}}...
                                 </span>
-
-
                             </button>
                         </div>
                     </div>
@@ -364,7 +361,8 @@
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <small class="text-gray-500">*This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
+                <small ng-if="sys.idioma === 'en'" class="text-gray-500">*This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
+                <small ng-if="sys.idioma === 'es'" class="text-gray-500">*Este es un plan de suscripción con contrato. Después que la suscripción termine (12 ó 24 meses) el plan se convierte a plan de mes-a-mes que se puede cancelar en cualquier momento.</small>
             </div>
         </div>
     </div>
@@ -372,14 +370,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="mb-2 text-primary h-neue-black">Review and complete</h3>
+                    <h3 class="mb-2 text-primary h-neue-black">{{'review'|translate'}}</h3>
                     <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
                     <!--<p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>-->
                 </div>
             </div>
         </div>
         <div class="container">
-            <form class="bg-primary-soft p-3">
+            <form class="bg-primary-soft p-3">ng-translate      
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -634,7 +632,8 @@
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                             </div>
-                            <p class="mb-2 font-size-lg font-style-normal">I was at work and not feeling well. I had heard about Hello Alvin from a friend, so I signed up and was immediately able to send an email to a doctor. Within about an hour, a doctor responded to my email. Problem solved! I tell all of my friends to check out Hello Alvin. Whether they are insured or uninsured anyone can use this great healthcare service.</p>
+                            <p ng-if="sys.idioma === 'en'" class="mb-2 font-size-lg font-style-normal">I was at work and not feeling well. I had heard about Hello Alvin from a friend, so I signed up and was immediately able to send an email to a doctor. Within about an hour, a doctor responded to my email. Problem solved! I tell all of my friends to check out Hello Alvin. Whether they are insured or uninsured anyone can use this great healthcare service.</p>
+                            <p ng-if="sys.idioma === 'es'" class="mb-2 font-size-lg font-style-normal">Estaba en el trabajo y no me sentía bien. Había oído hablar de Hello Alvin de un amigo, así que me registré y pude enviar inmediatamente un correo electrónico a un médico. En una hora, un médico respondió a mi correo electrónico. ¡Problema resuelto! Les digo a todos mis amigos que sepan de Hello Alvin. Si están asegurados o no asegurados, cualquiera puede usar este gran servicio de atención médica.</p>
                             <footer class="blockquote-footer h-neue-b">Mike T., Kansas City, Missouri </footer>
                         </blockquote>
                     </div>
@@ -651,7 +650,15 @@
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                             </div>
-                            <p class="mb-2 font-size-lg font-style-normal">I was recently struggling with numbness in my toes, I contacted a Hello Alvin doctor, and in less than 24 hours I got an email back saying it was sensory pressure neuropathy. The doctor told me to wear shoes that would not compress my toes and expect full recovery in less than 72 hours. Because of Hello Alvin, I saved time and money by not going to a specialist. </p>
+                            <p ng-if="sys.idioma === 'en'" class="mb-2 font-size-lg font-style-normal">I was recently struggling with numbness in my toes, I contacted a Hello Alvin doctor, and in less than 24 hours I got an email back saying it was sensory pressure neuropathy. The doctor told me to wear shoes that would not compress my toes and expect full recovery in less than 72 hours. Because of Hello Alvin, I saved time and money by not going to a specialist. </p>
+                            <p ng-if="sys.idioma === 'es'" class="mb-2 font-size-lg font-style-normal">
+                                Recientemente estaba luchando con entumecimiento en mis dedos de los pies,
+                                me puse en contacto con un médico de Hello Alvin, y en menos de 24 horas
+                                recibí un correo electrónico diciendo que era neuropatía de presión sensorial.
+                                El médico me dijo que usara zapatos que no me comprimieran los dedos de los
+                                pies y que esperara una recuperación completa en menos de 72 horas.
+                                Gracias a Hello Alvin, ahorré tiempo y dinero al no ir con un especialista.
+                            </p>
                             <footer class="blockquote-footer h-neue-b">Tory C., Oakland, New Jersey </footer>
                         </blockquote>
                     </div>
@@ -668,8 +675,13 @@
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                                 <div class="rating-item"><i class="fas fa-star"></i> </div>
                             </div>
-                            <p class="mb-2 font-size-lg font-style-normal">My wife and I have a two-year-old daughter. On a Saturday night she developed a pain in her elbow. I called the Hello Alvin 24-hour Registered Nurse line and within a minute or two I was speaking with a registered nurse who advised me on what to do. Fast, convenient, and the nurse line was included in the Hello Alvin subscription, so there was no fee to use it.</p>
-
+                            <p ng-if="sys.idioma === 'en'" class="mb-2 font-size-lg font-style-normal">My wife and I have a two-year-old daughter. On a Saturday night she developed a pain in her elbow. I called the Hello Alvin 24-hour Registered Nurse line and within a minute or two I was speaking with a registered nurse who advised me on what to do. Fast, convenient, and the nurse line was included in the Hello Alvin subscription, so there was no fee to use it.</p>
+                            <p ng-if="sys.idioma === 'es'" class="mb-2 font-size-lg font-style-normal">
+                                Mi esposa y yo tenemos una hija de dos años. Un sábado por la noche desarrolló un dolor en el codo.
+                                Llamé a la línea de enfermeras registradas Hello Alvin las 24 horas y en un minuto o dos estaba hablando
+                                con una enfermera registrada que me aconsejó sobre qué hacer. <br />Rápido, conveniente, y la línea de
+                                enfermeras esta incluída en el plan de suscripción Hello Alvin, por lo que no había ningún cargo para usarlo.
+                            </p>
                             <footer class="blockquote-footer h-neue-b">Emin H., St. Louis, Missouri </footer>
                         </blockquote>
                     </div>
@@ -686,12 +698,19 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="d-flex h-100 justify-content-center">
-                    <div class="align-self-center p-4">
+                    <div ng-if="sys.idioma === 'en'" class="align-self-center p-4">
                         <h1 class="mb-4 amplesoft-b">Once you enroll, it's easy to download the TELADOC app. </h1>
                         <p class="mb-4 font-size-lg text-gray-500 h-neue-b">Our mission is to see that everyone in America has access to convenient, affordable healthcare, on demand, 24/7. </p>
                         <p class="mb-4 font-size-lg text-gray-450 h-neue">Having a doctor available right from home, by video or phone, is a smart thing to do. </p>
                         <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary">SELECT A PLAN</a>
                     </div>
+                    <div ng-if="sys.idioma === 'es'" class="align-self-center p-4">
+                        <h1 class="mb-4 amplesoft-b">Una vez suscrito, bajar el App de TELADOC<sup style="font-size:smaller;">&#174;</sup> es muy fácil. </h1>
+                        <p class="mb-4 font-size-lg text-gray-500 h-neue-b">Nuestra misión es asegurarnos que todos en Estados Unidos podamos tener cuidado médico 24/7 de manera fácil y accesible. </p>
+                        <p class="mb-4 font-size-lg text-gray-450 h-neue">Tener un  doctor disponible desde tú casa, por video o teléfono es la mejor decisión.</p>
+                        <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary">Selecciona un plan</a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -708,7 +727,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <ul class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
+                <ul ng-if="sys.idioma === 'en'" class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
                     <li class="list-group-item">
                         <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseOne">Do I need insurance to use the service? </a>
                         <div class="collapse" id="faqCollapseOne" data-parent="#faqCollapseParentOne">
@@ -742,6 +761,44 @@
                         </div>
                     </li>
                 </ul>
+                <ul ng-if="sys.idioma === 'es'" class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseOne">¿Necesito tener un seguro médico para usar este servicio? </a>
+                        <div class="collapse" id="faqCollapseOne" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. No necesitas tener un plan de seguro médico para acceder a nuestros médicos y enfermeras las 24 horas del día, 7 días a la semana. Es como ir a urgencias o emergencias, excepto sin todos los viajes y altos costos. Y, si necesitas una receta – ellos te pueden dar una si creen que es médicamente necesario. También tendrás acceso ilimitado las 24 horas del día, 7 días a la semana a nuestra Línea de Enfermeras Registradas y servicios de Correo electrónico a un Doctor (Email-a-Doctor) sin costo adicional.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseTwo">¿Puedo obtener una receta? </a>
+                        <div class="collapse" id="faqCollapseTwo" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">
+                                    Si, si es médicamente necesario. Depende del médico recomendar el mejor tratamiento.
+                                    Los médicos de Teladoc&#174; no emiten recetas para sustancias controladas por la DEA, no terapéuticas y/o ciertos otros medicamentos que pueden ser perjudiciales debido a su potencial de abuso.
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseThree">¿Es Hello Alvin&#174; una aseguranza médica? </a>
+                        <div class="collapse" id="faqCollapseThree" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. Alvin Healthcare, Hello Alvin&#174; y Alvin&#174; no son aseguranzas médicas, pero ayudamos a muchas personas que no tienen un plan de seguro, a personas que tienen un plan de salud de alto deducible (HDHP) o desean la comodidad de no tener que perder tiempo viajando a un cuidado de urgencias o urgencias para una enfermedad menor para ellos o su familiar. Cualquier persona puede usar Hello Alvin&#174;, con o sin aseguranza médica.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseFour">¿Puedo usar Hello Alvin&#174; o Teladoc&#174; fuera de los Estados Unidos?</a>
+                        <div class="collapse" id="faqCollapseFour" data-parent="#faqCollapseParentOne">
+                            <div class="mt-5">
+                                <p class="mb-0 font-size-lg text-gray-500">No. Las consultas con Hello Alvin&#174; y Teladoc&#174; no están disponibles fuera de los Estados Unidos.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -760,13 +817,17 @@
     <script src="./assets/js/theme.min.js"></script>
     <script src="./assets/js/format.js"></script>
 
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.0/angular-resource.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <!-- Angular -->
 
-    <script src="./assets/js/telemed.js"></script>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/services.js"></script>
+    <script src="./assets/js/languages.js"></script>
+    <script src="./assets/js/controllers.js"></script>
 
     <script>
         function modalFn() {
