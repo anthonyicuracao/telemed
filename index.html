@@ -23,7 +23,7 @@
     <nav class="navbar navbar-dark fixed-top bg-primary p-1">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img alt="curacao" class="telemed-logo" src="./assets/img/telemed/logo.png">
+                <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
             </a>
             <a class="nav-link ml-auto text-white" href="tel:8002872226">
                 <span class="desktop-only">800-287-2226</span>
@@ -41,7 +41,7 @@
         <div style="position: absolute; z-index: 99; top: 0; ">
             <div class="row py-12 px-4 align-items-center">
                 <div class="col-12 col-md-5">
-                    <h1 style="font-size:300%;" class="amplesoft-b ">{{'talkTo' | translate}}</h1>
+                    <h1 style="font-size:3.5rem;" class="amplesoft-b ">{{'talkTo' | translate}}</h1>
                     <img class="w-50" ng-src="./assets/img/telmed-content/hello-alvin-telemed-logo-{{getIdioma()}}.png" alt="">
                 </div>
                 <div class="col-12 col-md-7 text-left">
@@ -72,7 +72,7 @@
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.ogv" type="video/ogv">
                     </video>
                 </div>
-                <p class="amplesoft-b" style="font-size: 2.5rem; line-height: 1;">{{'talkTo'|translate}}</p>
+                <p class="amplesoft-b" style="font-size: 3.5rem; line-height: 1;">{{'talkTo'|translate}}</p>
                 <div class="mx-3"> <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn-block btn btn-secondary">{{'selectPlan' | translate}}</a> </div>
             </div>
         </div>
@@ -91,20 +91,28 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="d-flex h-100">
-                                <ul class="align-self-center checkmark-group mb-0">
-                                    <li class="checkmark-item py-2">{{'accessToUS' | translate}}</li>
-                                    <li class="checkmark-item py-2">{{'free24' | translate}}</li>
-                                    <li class="checkmark-item py-2">{{'oneFREE'|translate}}</li>
-                                    <li class="checkmark-item py-2">{{'freeDiscount'|translate}}</li>
+                                <ul ng-if="sys.idioma === 'en'" class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">Free (1 per Month*) 24/7 access to a Doctor via phone or video.<br><small>*Only $15 per Doctor consultation after your first session.</small></li>
+                                    <li class="checkmark-item py-2">Prescription (Rx) to your preferred pharmacy</li>
                                 </ul>
+                                <ul ng-if="sys.idioma === 'es'" class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">GRATIS (1 al mes*) 24/7 acceso a doctores vía teléfono o video.<br><small>* Solo $15 por consulta médica después de tu primera sesión.</small></li>
+                                    <li class="checkmark-item py-2">Recetas (Rx) enviadas a tu farmacia preferida</li>
+                                </ul>
+
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="d-flex h-100">
-                                <ul class="align-self-center checkmark-group mb-0">
-                                    <li class="checkmark-item py-2">{{'oneFREE'|translate}}</li>
-                                    <li class="checkmark-item py-2">{{'freeEmail'|translate}}</li>
-                                    <li class="checkmark-item py-2">{{'only$15'|translate}}</li>
+                                <ul ng-if="sys.idioma === 'en'" class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">Free unlimited 24/7 Nurse Hotline access</li>
+                                    <li class="checkmark-item py-2">Free Discount Pharmacy Card</li>
+                                    <li class="checkmark-item py-2">Free Hello Alvin’s Email-a-Medical Specialist services</li>
+                                </ul>
+                                <ul ng-if="sys.idioma === 'es'" class="align-self-center checkmark-group mb-0">
+                                    <li class="checkmark-item py-2">Acceso GRATIS ilimitado 24/7 a una línea directa de enfermeras.</li>
+                                    <li class="checkmark-item py-2">Tarjeta GRATIS de descuento en farmacias</li>
+                                    <li class="checkmark-item py-2">Acceso GRATIS a servicios de especialistas médicos de Hello Alvin por correo electrónico</li>
                                 </ul>
                             </div>
                         </div>
@@ -377,7 +385,8 @@
             </div>
         </div>
         <div class="container">
-            <form class="bg-primary-soft p-3">ng-translate      
+            <form class="bg-primary-soft p-3">
+                ng-translate
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
@@ -614,7 +623,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="mb-4 text-primary h-neue-black">What people are saying about Us</h3>
+                    <h3 class="mb-4 text-primary h-neue-black">{{'whatPeople'|translate}}</h3>
                 </div>
             </div>
         </div>
@@ -719,7 +728,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="text-primary h-neue-black">FAQ’s</h3>
+                    <h3 class="text-primary h-neue-black">{{'faqs'|translate}}</h3>
                 </div>
             </div>
         </div>
