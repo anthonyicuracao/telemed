@@ -4,6 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta ng-if="sys.idioma === 'en'" property="og:image" content="https://icuracao.com/pub/media/wysiwyg/curacao-logo.jpg" />
+    <meta ng-if="sys.idioma === 'en'" name="description" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
+    <title ng-if="sys.idioma === 'en'">Curacao - All the brands you love. Low Easy Payments!</title>
+
+    <meta ng-if="sys.idioma === 'es'" property="og:image" content="https://icuracao.com/pub/media/wysiwyg/curacao-logo.jpg" />
+    <meta ng-if="sys.idioma === 'es'"name="description" content="Habla con un Dr. 24/7 con Hello Alvin de Teledoc" />
+    <title ng-if="sys.idioma === 'es'">TelMED - ¡Habla con un doctor 24/7 en video o por teléfono!</title>
+
+
     <link rel="icon" href="./assets/img/favicons/favicon.ico">
     <link rel="stylesheet" href="./assets/libs/flickity/dist/flickity.min.css">
     <link rel="stylesheet" href="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
@@ -14,8 +24,6 @@
     <link rel="stylesheet" href="./assets/fonts/feather/feather.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./assets/css/theme.min.css">
-    <title ng-if="sys.idioma === 'en'">Curacao - All the brands you love. Low Easy Payments!</title>
-    <title ng-if="sys.idioma === 'es'">TelMED - ¡Habla con un doctor 24/7 en video o por teléfono!</title>
 
     <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="./bower_components/angular/angular.min.js"></script>
