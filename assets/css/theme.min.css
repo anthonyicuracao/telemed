@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 @font-face {
     font-family: Jost;
     src: url(../fonts/jost/Jost-400-Book.woff2) format("woff2"), url(../fonts/jost/Jost-400-Book.woff) format("woff"), url(../fonts/jost/Jost-400-Book.ttf) format("truetype")

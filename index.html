@@ -189,10 +189,10 @@
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <label class="sr-only" for="modalNewsletterVerticalEmail">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail1">
                                     {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail1" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -250,10 +250,10 @@
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <label class="sr-only" for="modalNewsletterVerticalEmail">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail2">
                                     {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail2" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -311,10 +311,10 @@
                     <form>
                         <div class="form-row">
                             <div class="col">
-                                <label class="sr-only" for="modalNewsletterVerticalEmail">
+                                <label class="sr-only" for="modalNewsletterVerticalEmail3">
                                     {{'curacaoCredit'|translate}}
                                 </label>
-                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
+                                <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail3" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                        ng-model="data.cust_id" ng-change="onChange('cust_id')">
                             </div>
                             <div class="col-12 text-center py-5">
@@ -351,10 +351,10 @@
                 <form>
                     <div class="form-row">
                         <div class="col">
-                            <label class="sr-only" for="modalNewsletterVerticalEmail">
+                            <label class="sr-only" for="4">
                                 {{'curacaoCredit'|translate}}
                             </label>
-                            <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail" type="text" placeholder="{{'curacaoCredit'|translate}}"
+                            <input class="form-control form-control-sm" id="modalNewsletterVerticalEmail4" type="text" placeholder="{{'curacaoCredit'|translate}}"
                                    ng-model="data.cust_id" ng-change="onChange('cust_id')">
                         </div>
                         <div class="col-12 text-center py-5">
@@ -810,14 +810,18 @@
                     <div class="row mb-6">
                         <div class="col-12">
                             <div class="text-center">
-                                <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
+                                <h3 class="mb-2 text-dark h-neue-black">{{'accountVerification'|translate}}</h3>
                                 <div ng-if="!data.codeSent">
-                                    <p class="mb-2 text-gray-500 gotham-book font-size-lg">Send verification code to:</p>
+                                    <p class="mb-2 text-gray-500 gotham-book font-size-lg">{{'sendVerification'|translate}}:</p>
                                     <p class="mb-2 text-primary gotham-m font-size-h3">(***)***-{{data.cellLast4}}</p>
                                 </div>
-                                <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                <p ng-if="sys.idioma === 'en'" class="mb-0 text-gray-500 gotham-book font-size-lg">
                                     You may also be verified with your
                                     <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">personal information</a>
+                                </p>
+                                <p ng-if="sys.idioma === 'es'" class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                    También puede ser verificado con su
+                                    <a href="" style="color: #008ecf;" ng-click="data.verifyByCode = false;">información personal</a>
                                 </p>
                             </div>
                         </div>
@@ -832,10 +836,10 @@
                                 </span>
 
                                 <span ng-if="!sys.loading">
-                                    Send Code
+                                    {{'sendCode'|translate}}
                                 </span>
                                 <span ng-if="sys.loading">
-                                    Sending Code...
+                                    {{'sendingCode'|translate}}...
                                 </span>
 
                             </button>
@@ -844,7 +848,7 @@
                     <div ng-if="data.codeSent">
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <h3 class="mb-2 text-dark h-neue-b">Enter your code!</h3>
+                                <h3 class="mb-2 text-dark h-neue-b">{{'enterYourCode'|translate}}!</h3>
                                 <div class="form-group">
                                     <label class="sr-only" for="activationCode">####</label>
                                     <input class="form-control" id="activationCode" type="text" placeholder="####" required
@@ -866,10 +870,10 @@
                                     </span>
 
                                     <span ng-if="!sys.loading">
-                                        Verify Code
+                                        {{'verifyCode'|translate}}
                                     </span>
                                     <span ng-if="sys.loading">
-                                        Verifying Code...
+                                        {{'verifyingCode'|translate}}...
                                     </span>
                                 </button>
                             </div>
@@ -880,19 +884,26 @@
                     <div class="row mb-6">
                         <div class="col-12">
                             <div class="text-center">
-                                <h3 class="mb-2 text-dark h-neue-black">Account Verification</h3>
-                                <p class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                <h3 class="mb-2 text-dark h-neue-black">{{'accountVerification'|translate}}</h3>
+                                <p ng-if="sys.idioma === 'en'" class="mb-0 text-gray-500 gotham-book font-size-lg">
                                     Verify with your personal information, You may also be verified with a
                                     <a href="#!" style="color: #008ecf;" ng-click="data.verifyByCode = true;">verification code</a>
+                                </p>
+                                <p ng-if="sys.idioma === 'es'" class="mb-0 text-gray-500 gotham-book font-size-lg">
+                                    Verifíquese con su información personal, también puede ser verificado con un
+                                    <a href="#!" style="color: #008ecf;" ng-click="data.verifyByCode = true;">código de verificación</a>
                                 </p>
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 text-center font-weight-bolder font-size-lg mb-3">
+                        {{'enterOne'|translate}}:
+                    </div>
                     <div class="row">
-                        <div class="col-12 text-center">
+                        <div class="col-12 text-left">
                             <div class="form-group">
-                                <label class="sr-only" for="last4ssn">Last 4 SSN</label>
-                                <input class="form-control p-2" id="last4ssn" type="text" placeholder="Last 4 SSN"
+                                <label for="last4ssn">{{'last4SSN'|translate}}</label>
+                                <input class="form-control p-2" id="last4ssn" type="text" placeholder="{{'last4SSN'|translate}}"
                                        ng-class="{'bg-danger-soft':data.last4ssn && !isOk('last4ssn')}"
                                        ng-change="onChange('last4ssn')"
                                        ng-model="data.last4ssn">
@@ -900,21 +911,21 @@
                         </div>
                     </div>
                     <div class="form-row mb-2">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12">
                             <div class="form-group">
-                                <label class="sr-only" for="dateOfBirth">Birthday</label>
-                                <input class="form-control p-2" id="dateOfBirth" type="date" placeholder="Birthday"
+                                <label for="dateOfBirth">{{'dobx'|translate}}</label>
+                                <input class="form-control p-2" id="dateOfBirth" type="date"
                                        ng-class="{'bg-danger-soft':data.dob && !isOk('dob')}"
                                        ng-model="data.dob">
                             </div>
                         </div>
-                        <div class="col-12 col-md-1 text-center">
+                        <!--<div class="col-12 col-md-1 text-center">
                             <div class="py-3 small">OR</div>
-                        </div>
-                        <div class="col-12 col-md-5">
+                        </div>-->
+                        <div class="col-12">
                             <div class="form-group">
-                                <label class="sr-only" for="mothersMaidenName">Mothers Maiden Name</label>
-                                <input class="form-control p-2" id="mothersMaidenName" type="text" placeholder="Mother's Maiden Name"
+                                <label for="mothersMaidenName">{{'maiden'|translate}}</label>
+                                <input class="form-control p-2" id="mothersMaidenName" type="text" placeholder="{{'maiden'|translate}}"
                                        ng-class="{'bg-danger-soft':data.mmn && !isOk('mmn')}"
                                        ng-model="data.mmn">
                             </div>
@@ -930,10 +941,10 @@
                                 </span>
 
                                 <span ng-if="!sys.loading">
-                                    Verify Info
+                                    {{'verifyInfo'|translate}}
                                 </span>
                                 <span ng-if="sys.loading">
-                                    Verifying Info...
+                                    {{'verifyingInfo'|translate}}...
                                 </span>
                             </button>
                         </div>
