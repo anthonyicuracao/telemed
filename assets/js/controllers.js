@@ -1,8 +1,18 @@
-app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter) {
+app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $translate) {
     var sys = $rootScope.sys;
 
     $scope.data = {};
     var data = $scope.data;
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+
+    console.log(url);
+
+    if (url && url.searchParams && url.searchParams.get('l') === 'es') {
+        sys.idioma = 'es';
+        $translate.use(sys.idioma);
+    }
 
     $scope.clear = function () {
         data.cellLast4 = '';
@@ -14,7 +24,6 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter) {
         data.last4ssn = '';
         data.dob = null;
         data.mmn = '';
-        data.test = 'é';
     };
 
 

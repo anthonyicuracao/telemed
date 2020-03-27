@@ -1,6 +1,6 @@
 var app = angular.module('telemed', [
     'ngResource',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
 ]);
 
 app.run(function ($rootScope, $translate) {
@@ -47,6 +47,8 @@ app.run(function ($rootScope, $translate) {
 
     //set idioma
     sys.setIdioma = function (idioma) {
+        console.log(0, idioma);
+
         if (sys.idioma === 'en') {
             sys.idioma = 'es';
         } else {
@@ -54,7 +56,10 @@ app.run(function ($rootScope, $translate) {
         }
 
         $translate.use(sys.idioma);
-        event.stopPropagation();
+
+        if (event) {
+            event.stopPropagation();
+        }
     }
 
 });

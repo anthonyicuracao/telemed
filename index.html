@@ -20,6 +20,7 @@
 </head>
 
 <body ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91" style="padding-top: 90px;">
+    <!-- Nav-Bar -->
     <nav class="navbar navbar-dark fixed-top bg-primary p-1">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -36,6 +37,7 @@
             </a>
         </div>
     </nav>
+    <!--Header with video PC starts -->
     <section class="desktop-only">
         <img src="./assets/img/telmed-content/telemed-header-PC-eng.jpg" alt="Curacao" class="img-fluid">
         <div style="position: absolute; z-index: 99; top: 0; ">
@@ -57,6 +59,7 @@
             </div>
         </div>
     </section>
+    <!--Header with video MOB starts -->
     <section class="mobile-only mt-n8">
         <div class="row">
             <div class="col">
@@ -77,6 +80,7 @@
             </div>
         </div>
     </section>
+    <!--Subscriptions Benefits Start-->
     <div class="py-4">
         <div class="container-fluid">
             <div class="row">
@@ -121,6 +125,7 @@
             </div>
         </div>
     </div>
+    <!--COVID message-->
     <div class="p-4 w-lg-50 mx-auto mt-n4 bg-dark">
         <div class="container">
             <div class="row">
@@ -143,6 +148,7 @@
             </div>
         </div>
     </div>
+    <!--Plans Start-->
     <div id="selectYourPlan" class="p-4">
         <div class="container">
             <div class="row">
@@ -154,6 +160,7 @@
         </div>
     </div>
     <div class="row" style="max-width: 100%; margin: 0 auto;">
+        <!-- Plan #1 -->
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <input type="radio" name="familyPlan" value="M" id="telemed1"
@@ -171,7 +178,8 @@
                 </label>
             </div>
         </div>
-        <div id="enterAccount1" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+        <!-- Enter Account #1 - MOB -->
+        <div id="enterAccount1" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === 'M'">
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
@@ -209,6 +217,7 @@
                 </div>
             </div>
         </div>
+        <!-- Plan #2 -->
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
@@ -230,7 +239,8 @@
                 </label>
             </div>
         </div>
-        <div id="enterAccount2" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+        <!-- Enter Account #2 - MOB -->
+        <div id="enterAccount2" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '1'">
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
@@ -268,6 +278,7 @@
                 </div>
             </div>
         </div>
+        <!-- Plan #3 -->
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
@@ -289,7 +300,8 @@
                 </label>
             </div>
         </div>
-        <div id="enterAccount3" style="display: none;" class="m-only container max-auto w-lg-50 mt-4">
+        <!-- Enter Account #3 - MOB -->
+        <div id="enterAccount3" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '2'">
             <div class="row">
                 <div class="col text-center">
                     <p class="h-neue-b text-gray-500 text-center">
@@ -328,6 +340,7 @@
             </div>
         </div>
     </div>
+    <!-- Enter Account #4 - PC -->
     <div id="enterAccount4" style="display: none;" class="d-only container max-auto w-lg-50 mt-4">
         <div class="row">
             <div class="col text-center">
@@ -374,24 +387,24 @@
             </div>
         </div>
     </div>
+    <!-- Review and Complete FORM -->
     <section id="editCollapseParentOne" ng-if="data.codeVerified">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="mb-2 text-primary h-neue-black">{{'review'|translate'}}</h3>
-                    <h4 class="mb-2 text-dark h-neue-black">Personal Information</h4>
+                    <h3 class="mb-2 text-primary h-neue-black">{{'review'|translate}}</h3>
+                    <h4 class="mb-2 text-dark h-neue-black">{{'personalInformation'|translate}}</h4>
                     <!--<p class="mb-4 text-gray-500 gotham-book font-size-lg">Tap a section to make changes</p>-->
                 </div>
             </div>
         </div>
         <div class="container">
             <form class="bg-primary-soft p-3">
-                ng-translate
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                First Name
+                                {{'firstName'|translate}}
                                 <span ng-if="!isOk('f_name')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                             </label>
                             <input class="form-control" type="text" ng-model="data.curacao.F_NAME">
@@ -400,7 +413,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Last Name
+                                {{'lastName'|translate}}
                                 <span ng-if="!isOk('l_name')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                             </label>
                             <input class="form-control" type="text" ng-model="data.curacao.L_NAME">
@@ -409,7 +422,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Email
+                                {{'email'|translate}}
                                 <span ng-if="!isOk('email')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                             </label>
                             <input id="email" class="form-control" type="email" ng-model="data.curacao.EMAIL">
@@ -418,7 +431,7 @@
                     <div class="col-lg-4 offset-lg-8">
                         <div class="form-group">
                             <label>
-                                Confirm Email
+                                {{'confirmEmail'|translate}}
                                 <span ng-if="!isOk('email2')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -430,22 +443,22 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Gender
+                                {{'gender'|translate}}
                                 <span ng-if="!isOk('gender')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
                             </label>
                             <select class="from-control custom-select mr-sm-2" ng-model="data.curacao.GENDER" ng-change="test()">
-                                <option value="M">Male</option>
-                                <option value="F">Female</option>
-                                <option value="O">Other</option>
+                                <option value="M">{{'male'|translate}}</option>
+                                <option value="F">{{'female'|translate}}</option>
+                                <option value="O">{{'other'|translate}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                DOB
+                                {{'dob'|translate}}
                             </label>
                             <span ng-if="!isOk('dob2')">
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
@@ -456,7 +469,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Cellular
+                                {{'cellular'|translate}}
                                 <span ng-if="!isOk('cell')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -469,7 +482,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Street Address
+                                {{'street'|translate}}
                                 <span ng-if="!isOk('street')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -480,7 +493,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                City
+                                {{'city'|translate}}
                                 <span ng-if="!isOk('city')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -491,7 +504,7 @@
                     <div class="col-lg-2">
                         <div class="form-group">
                             <label>
-                                State
+                                {{'state'|translate}}
                                 <span ng-if="!isOk('state')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -502,7 +515,7 @@
                     <div class="col-lg-2">
                         <div class="form-group">
                             <label>
-                                Zip
+                                {{'zip'|translate}}
                                 <span ng-if="!isOk('zip')">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -517,17 +530,16 @@
 
                     <div class="col-lg-4">
                         <h5 class="m-0">
-                            Please, choose a password for your Hello Alvin account.
+                            {{'choosePassword'|translate}}
                         </h5>
                         <p>
-                            <b>Minimum requirements:</b> 8 characters long, 1 uppercase letter,
-                            1 lowercase letter and 1 number.
+                            <b>{{'minReq'|translate}}:</b> {{'passReq'|translate}}
                         </p>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Password
+                                {{'password'|translate}}
                                 <span ng-if="!isOk('password')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                             </label>
                             <input id="password" class="form-control" type="password" ng-model="data.password">
@@ -536,7 +548,7 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>
-                                Confirm Password
+                                {{'confirmPassword'|translate}}
                                 <span ng-if="!isOk('password2') || data.password !== data.password2">
                                     <i class="fas fa-exclamation-triangle text-danger"></i>
                                 </span>
@@ -546,11 +558,11 @@
                     </div>
                 </div>
             </form>
-
+            <!-- Submit Order -->
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h3 class="mb-2 text-primary h-neue-black p-3 m-0">Submit Your Order</h3>
+                        <h3 class="mb-2 text-primary h-neue-black p-3 m-0">{{'submitOrder'|translate}}</h3>
                     </div>
                 </div>
             </div>
@@ -558,17 +570,17 @@
             <div class="container p-3 bg-primary-soft">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-left">
-                        <h5 class="text-primary m-0">Customer:</h5>
+                        <h5 class="text-primary m-0">{{'customer'|translate}}:</h5>
                         <h4 class="mb-1">{{data.curacao.F_NAME}} {{data.curacao.L_NAME}}</h4>
                         <p class="mb-1 fs--1">
                             {{data.curacao.STREET}}<br>{{data.curacao.CITY}}, {{data.curacao.CA}} {{data.curacao.ZIP}}
                         </p>
-                        <p class="mb-0 fs--1"> <strong>Email: </strong><a ng-href="mailto:{{data.curacao.EMAIL}}">{{data.curacao.EMAIL}}</a></p>
-                        <p class="mb-0 fs--1"> <strong>Phone: </strong><a ng-href="tel:{{data.curacao.CELL}}">{{data.curacao.CELL}}</a></p>
+                        <p class="mb-0 fs--1"> <strong>{{'email'|translate}}: </strong><a ng-href="mailto:{{data.curacao.EMAIL}}">{{data.curacao.EMAIL}}</a></p>
+                        <p class="mb-0 fs--1"> <strong>{{'phone'|translate}}: </strong><a ng-href="tel:{{data.curacao.CELL}}">{{data.curacao.CELL}}</a></p>
                     </div>
                     <div class="col-md-6 text-center">
                         <hr class="border-dashed d-block d-md-none my-4">
-                        <h4 class="font-weight-bold">All Total: <span class="text-primary">${{data.price}}</span></h4>
+                        <h4 class="font-weight-bold">{{'allTotal'|translate}}: <span class="text-primary">${{data.price}}</span></h4>
                         <button class="btn btn-success mt-3 px-5" type="submit" ng-click="pushTeleMed()"
                                 ng-disabled="!confirmButtonOk()"
                                 ng-if="!data.paid">
@@ -577,48 +589,21 @@
                                 <i class="fas fa-sync-alt fa-spin"></i>
                             </span>
 
-                            Confirm &amp; Pay
+                            {{'confirmPay'|translate}}
                         </button>
                         <button class="btn btn-success mt-3 px-5" type="submit" ng-click=""
                                 ng-disabled="true"
                                 ng-if="data.paid">
-                            Confirmed &amp; Paid!
+                            {{'confirmedPaid'|translate}}
                         </button>
-                        <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
+                        <p ng-if="sys.idioma === 'en'" class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
+                        <p ng-if="sys.idioma === 'es'" class="fs--1 mt-3 mb-0">Al hacer click en el botón <strong>Confirmar y Pagar </strong>aceptas los <a href="#!">Términos y Condiciones</a></p>
                     </div>
                 </div>
             </div>
-
-
         </div>
-        <!--<div id="genderContainer" class="container max-auto w-lg-50 mt-4">
-            <div class="row">
-                <div class="col text-center">
-                    <p class="h-neue-b text-gray-500 text-center">Select gender (required field)</p>
-                    <form>
-                        <div class="form-row">
-                            <div class="col">
-                                <div class="form-group mb-0">
-                                    <label class="sr-only" for="selectGender">Categories:</label>
-                                    <select class="custom-select" id="selectGender">
-                                        <option selected="">Select gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center py-5">
-                                <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#account-verification"> Continue</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>-->
     </section>
-
-
+    <!-- Quotes Start -->
     <div class="p-4">
         <div class="container">
             <div class="row">
@@ -698,6 +683,7 @@
             </div>
         </div>
     </div>
+    <!--Middle Banner Ad with Doctors-->
     <div class="container mb-4">
         <div class="row no-gutters justify-content-between">
             <div class="col-12 col-md-6">
@@ -724,6 +710,7 @@
             </div>
         </div>
     </div>
+    <!--FAQ's Start-->
     <div class="p-4">
         <div class="container">
             <div class="row">
@@ -811,102 +798,6 @@
             </div>
         </div>
     </div>
-    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/libs/flickity/dist/flickity.pkgd.min.js"></script>
-    <script src="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
-    <script src="./assets/libs/smooth-scroll/dist/smooth-scroll.min.js"></script>
-    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="./assets/libs/list.js/dist/list.min.js"></script>
-    <script src="./assets/libs/jarallax/dist/jarallax.min.js"></script>
-    <script src="./assets/libs/highlightjs/highlight.pack.min.js"></script>
-    <script src="./assets/libs/flickity-fade/flickity-fade.js"></script>
-    <script src="./assets/libs/moment/moment.min.js"></script>
-    <script src="./assets/libs/moment/moment-timezone-with-data.min.js"></script>
-    <script src="./assets/js/theme.min.js"></script>
-    <script src="./assets/js/format.js"></script>
-
-    <!-- Angular -->
-
-    <script src="./bower_components/angular/angular.min.js"></script>
-    <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
-    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
-    <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/services.js"></script>
-    <script src="./assets/js/languages.js"></script>
-    <script src="./assets/js/controllers.js"></script>
-
-    <script>
-        function modalFn() {
-            var firstPt = document.getElementById("firstPt");
-            var secondPt = document.getElementById("secondPt");
-
-            var firstPtStyle = firstPt.style.display;
-            var secondPtStyle = secondPt.style.display;
-
-            if (firstPtStyle === "none") {
-                firstPt.removeAttribute("style");
-                secondPt.setAttribute("style", "display: none;");
-            } else {
-                secondPt.removeAttribute("style");
-                firstPt.setAttribute("style", "display: none;");
-            }
-        }
-
-        var enterAccount1 = document.getElementById("enterAccount1");
-        var enterAccount2 = document.getElementById("enterAccount2");
-        var enterAccount3 = document.getElementById("enterAccount3");
-        var enterAccount4 = document.getElementById("enterAccount4");
-        var telemed1 = document.getElementById("telemed1");
-        var telemed2 = document.getElementById("telemed2");
-        var telemed3 = document.getElementById("telemed3");
-
-        if (typeof telemed1 != "undefined" && telemed1 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
-            telemed1.addEventListener("click", function (e) {
-                radioFn();
-            });
-        }
-        if (typeof telemed2 != "undefined" && telemed2 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
-            telemed2.addEventListener("click", function (e) {
-                radioFn();
-            });
-        }
-        if (typeof telemed3 != "undefined" && telemed3 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
-            telemed3.addEventListener("click", function (e) {
-                radioFn();
-            });
-        }
-
-        function radioFn(event) {
-            if (typeof telemed1 != "undefined" && telemed1 != null && telemed1.checked === true) {
-                enterAccount4.setAttribute("style", "display: block;");
-
-                enterAccount1.setAttribute("style", "display: block;");
-                enterAccount2.setAttribute("style", "display: none;");
-                enterAccount3.setAttribute("style", "display: none;");
-            } else if (typeof telemed2 != "undefined" && telemed2 != null && telemed2.checked === true) {
-                enterAccount4.setAttribute("style", "display: block;");
-
-                enterAccount1.setAttribute("style", "display: none;");
-                enterAccount3.setAttribute("style", "display: none;");
-                enterAccount2.setAttribute("style", "display: block;");
-            } else if (typeof telemed3 != "undefined" && telemed3 != null && telemed3.checked === true) {
-                enterAccount4.setAttribute("style", "display: block;");
-
-                enterAccount3.setAttribute("style", "display: block;");
-                enterAccount1.setAttribute("style", "display: none;");
-                enterAccount2.setAttribute("style", "display: none;");
-            } else {
-                enterAccount4.setAttribute("style", "display: none;");
-
-                enterAccount1.setAttribute("style", "display: none;");
-                enterAccount2.setAttribute("style", "display: none;");
-                enterAccount3.setAttribute("style", "display: none;");
-            }
-        }
-    </script>
 
     <!-- pop up begin -->
     <div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1052,6 +943,104 @@
         </div>
     </div>
     <!-- pop up end -->
+
+    <script src="./assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/flickity/dist/flickity.pkgd.min.js"></script>
+    <script src="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script src="./assets/libs/smooth-scroll/dist/smooth-scroll.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="./assets/libs/list.js/dist/list.min.js"></script>
+    <script src="./assets/libs/jarallax/dist/jarallax.min.js"></script>
+    <script src="./assets/libs/highlightjs/highlight.pack.min.js"></script>
+    <script src="./assets/libs/flickity-fade/flickity-fade.js"></script>
+    <script src="./assets/libs/moment/moment.min.js"></script>
+    <script src="./assets/libs/moment/moment-timezone-with-data.min.js"></script>
+    <script src="./assets/js/theme.min.js"></script>
+    <script src="./assets/js/format.js"></script>
+
+    <!-- Angular -->
+
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="./bower_components/angular-translate/angular-translate.min.js"></script>
+
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/services.js"></script>
+    <script src="./assets/js/languages.js"></script>
+    <script src="./assets/js/controllers.js"></script>
+
+    <script>
+        function modalFn() {
+            var firstPt = document.getElementById("firstPt");
+            var secondPt = document.getElementById("secondPt");
+
+            var firstPtStyle = firstPt.style.display;
+            var secondPtStyle = secondPt.style.display;
+
+            if (firstPtStyle === "none") {
+                firstPt.removeAttribute("style");
+                secondPt.setAttribute("style", "display: none;");
+            } else {
+                secondPt.removeAttribute("style");
+                firstPt.setAttribute("style", "display: none;");
+            }
+        }
+
+        var enterAccount1 = document.getElementById("enterAccount1");
+        var enterAccount2 = document.getElementById("enterAccount2");
+        var enterAccount3 = document.getElementById("enterAccount3");
+        var enterAccount4 = document.getElementById("enterAccount4");
+        var telemed1 = document.getElementById("telemed1");
+        var telemed2 = document.getElementById("telemed2");
+        var telemed3 = document.getElementById("telemed3");
+
+        if (typeof telemed1 != "undefined" && telemed1 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
+            telemed1.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+        if (typeof telemed2 != "undefined" && telemed2 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
+            telemed2.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+        if (typeof telemed3 != "undefined" && telemed3 != null && enterAccount1 != "undefined" && enterAccount1 && enterAccount2 != "undefined" && enterAccount2 && enterAccount3 != "undefined" && enterAccount3 && enterAccount4 != "undefined" && enterAccount4) {
+            telemed3.addEventListener("click", function (e) {
+                radioFn();
+            });
+        }
+
+        function radioFn(event) {
+            if (typeof telemed1 != "undefined" && telemed1 != null && telemed1.checked === true) {
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount1.setAttribute("style", "display: block;");
+                enterAccount2.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
+            } else if (typeof telemed2 != "undefined" && telemed2 != null && telemed2.checked === true) {
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: block;");
+            } else if (typeof telemed3 != "undefined" && telemed3 != null && telemed3.checked === true) {
+                enterAccount4.setAttribute("style", "display: block;");
+
+                enterAccount3.setAttribute("style", "display: block;");
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: none;");
+            } else {
+                enterAccount4.setAttribute("style", "display: none;");
+
+                enterAccount1.setAttribute("style", "display: none;");
+                enterAccount2.setAttribute("style", "display: none;");
+                enterAccount3.setAttribute("style", "display: none;");
+            }
+        }
+    </script>
 
 
 </body>
