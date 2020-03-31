@@ -18531,3 +18531,7 @@ body {
 .bg-primary-soft {
     background-color: white !important;
 }
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    border-radius: 0%;
+}
