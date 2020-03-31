@@ -138,7 +138,8 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <small><span class="font-weight-bold" style="vertical-align: text-bottom;">1</span> This service is provided by Hello Alvin. Please see <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms and condition</a> for details.</small>
+                            <small ng-if="sys.idioma === 'en'"><span class="font-weight-bold" style="vertical-align: text-bottom;">1</span> This service is provided by Hello Alvin. Please see <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms and Conditions</a> for details.</small>
+                            <small ng-if="sys.idioma === 'es'"><span class="font-weight-bold" style="vertical-align: text-bottom;">1</span> Este servicio es proporcionado por Hello Alvin. Consulte los  <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Términos y Condiciones</a> para obtener más información.</small>
                         </div>
                     </div>
                 </div>
@@ -389,13 +390,6 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="col-12 pb-5 text-center" style="line-height: 1.75;">
-                            <div class="custom-control custom-checkbox">
-                                <input class="custom-control-input" id="modalNewsletterVerticalCheckbox" type="checkbox">
-                                <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'en'">By clicking this box you agree to the <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms &amp; Conditions</a></label>
-                                <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'es'">Al hacer click en el caja aceptas los <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Términos y Condiciones</a></label>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -603,6 +597,16 @@
                     <div class="col-md-6 text-center">
                         <hr class="border-dashed d-block d-md-none my-4">
                         <h4 class="font-weight-bold">{{'allTotal'|translate}}: <span class="text-primary">${{data.price}}</span></h4>
+
+                        <!-- <div class="col-12 pb-5 text-center" style="line-height: 1.75;">
+                        </div> -->
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" id="modalNewsletterVerticalCheckbox" type="checkbox" ng-model="data.termsOk">
+                            <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'en'">By clicking this box you agree to the <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms &amp; Conditions</a></label>
+                            <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'es'">Al hacer click en el caja aceptas los <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Términos y Condiciones</a></label>
+                        </div>
+
+
                         <button class="btn btn-success mt-3 px-5" type="submit" ng-click="pushTeleMed()"
                                 ng-disabled="!confirmButtonOk()"
                                 ng-if="!data.paid">
@@ -618,8 +622,8 @@
                                 ng-if="data.paid">
                             {{'confirmedPaid'|translate}}
                         </button>
-                        <p ng-if="sys.idioma === 'en'" class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
-                        <p ng-if="sys.idioma === 'es'" class="fs--1 mt-3 mb-0">Al hacer click en el botón <strong>Confirmar y Pagar </strong>aceptas los <a href="#!">Términos y Condiciones</a></p>
+                        <!-- <p ng-if="sys.idioma === 'en'" class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
+                        <p ng-if="sys.idioma === 'es'" class="fs--1 mt-3 mb-0">Al hacer click en el botón <strong>Confirmar y Pagar </strong>aceptas los <a href="#!">Términos y Condiciones</a></p> -->
                     </div>
                 </div>
             </div>

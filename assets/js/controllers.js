@@ -24,6 +24,7 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         data.last4ssn = '';
         data.dob = null;
         data.mmn = '';
+        data.termsOk = false;
     };
 
 
@@ -155,6 +156,7 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             && $scope.isOk('password')
             && $scope.isOk('password2')
             && data.password === data.password2
+            && data.termsOk
             ;
     };
 
