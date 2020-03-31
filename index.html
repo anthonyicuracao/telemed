@@ -237,7 +237,7 @@
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
-                    <span class="amplesoft-m font-size-xs" style="position: absolute;top: 6px;left: 58px;color: #4d4d4f;background: white;line-height: 16px;padding: 0 4px;">2</span>
+                    <span class="amplesoft-m" style="position: absolute; top: 26px; left: 51px; color: white; background: transparent;line-height: 16px;padding: 0 4px;font-size: 12px;">2</span>
                     <strong class="font-size-xs amplesoft-b">{{'save'|translate}}</strong>
                     <span class="h6 amplesoft-b mb-0">$120</span>
                 </div>
@@ -251,7 +251,7 @@
                         <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
                         <span class="font-size-lg amplesoft-m ml-n2">/ {{'month'|translate}}</span>
                     </h1>
-                    <p class="mb-0">{{'prepaid12'|translate}}*</p>
+                    <p class="mb-0">{{'prepaid12'|translate}}<span class="font-weight-bold" style="vertical-align: text-bottom;"> 3</span></p>
                     <div class="arrow"></div>
                 </label>
             </div>
@@ -298,7 +298,7 @@
         <div class="col-12 col-md-4 text-center">
             <div class="telemed-offer ml-n2 mt-n2 position-relative">
                 <div class="card-circle bg-secondary card-circle-right">
-                    <span class="amplesoft-m font-size-xs" style="position: absolute;top: 6px;left: 58px;color: #4d4d4f;background: white;line-height: 16px;padding: 0 4px;">2</span>
+                    <span class="amplesoft-m" style="position: absolute; top: 26px; left: 51px; color: white; background: transparent;line-height: 16px;padding: 0 4px;font-size: 12px;">2</span>
                     <strong class="font-size-xs amplesoft-b">{{'save'|translate}}</strong>
                     <span class="h6 amplesoft-b mb-0">$360</span>
                 </div>
@@ -312,7 +312,7 @@
                         <span class="amplesoft-b" style="font-size: 2.5rem;">99</span>
                         <span class="font-size-lg amplesoft-m ml-n2">/ {{'month'|translate}}</span>
                     </h1>
-                    <p class="mb-0">{{'prepaid24'|translate}}*</p>
+                    <p class="mb-0">{{'prepaid24'|translate}}<span class="font-weight-bold" style="vertical-align: text-bottom;"> 3</span></p>
                     <div class="arrow"></div>
                 </label>
             </div>
@@ -375,7 +375,7 @@
                                    ng-model="data.cust_id" ng-change="onChange('cust_id')">
                         </div>
                         <div class="col-12 text-center py-5">
-                            <button ng-click="continueWithPlan()"
+                            <button id="modalNewsletterVerticalButton" ng-click="continueWithPlan()"
                                     class="btn btn-block btn-secondary"
                                     ng-disabled="!isOk('cust_id') || sys.loading">
                                 <span ng-if="sys.loading">
@@ -392,7 +392,8 @@
                         <div class="col-12 pb-5 text-center" style="line-height: 1.75;">
                             <div class="custom-control custom-checkbox">
                                 <input class="custom-control-input" id="modalNewsletterVerticalCheckbox" type="checkbox">
-                                <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox">By checking this box you have consented to all <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms and condition</a></label>
+                                <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'en'">By clicking this box you agree to the <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms &amp; Conditions</a></label>
+                                <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'es'">Al hacer click en el caja aceptas los <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Términos y Condiciones</a></label>
                             </div>
                         </div>
                     </div>
@@ -403,11 +404,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-12 mx-auto text-left">
-                <small ng-if="sys.idioma === 'en'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">2</span> Compared with $40.00 monthly plan.</small>
-                <small ng-if="sys.idioma === 'es'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">2</span> En comparaci&#243;n con el plan mensual de $40.00.</small>
-                <br/>
-                <small ng-if="sys.idioma === 'en'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">3</span> This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
-                <small ng-if="sys.idioma === 'es'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">3</span> Este es un plan de suscripción con contrato. Después que la suscripción termine (12 ó 24 meses) el plan se convierte a plan de mes-a-mes que se puede cancelar en cualquier momento.</small>
+                <small ng-if="sys.idioma === 'en'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">2</span> Compared with $40.00 monthly plan. <span class="font-weight-bold" style="vertical-align: text-bottom;">3</span> This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
+                <small ng-if="sys.idioma === 'es'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">2</span> En comparaci&#243;n con el plan mensual de $40.00. <span class="font-weight-bold" style="vertical-align: text-bottom;">3</span> Este es un plan de suscripción con contrato. Después que la suscripción termine (12 ó 24 meses) el plan se convierte a plan de mes-a-mes que se puede cancelar en cualquier momento.</small>
             </div>
         </div>
     </div>

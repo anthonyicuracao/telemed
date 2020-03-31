@@ -21,7 +21,7 @@
         recommended: 'RECOMMENDED',
         prepaid12: 'Prepaid 12 months plan',
         prepaid24: 'Prepaid 24 months plan',
-        whatPeople: 'What people are saying about Us',
+        whatPeople: 'What people are saying about Hello Alvin',
         faqs: 'FAQ’s',
         review: 'Review and complete',
         personalInformation: 'Personal Information',
