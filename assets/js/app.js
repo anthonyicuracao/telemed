@@ -1,4 +1,5 @@
 var app = angular.module('telemed', [
+    'ui.router',
     'ngResource',
     'pascalprecht.translate',
 ]);
