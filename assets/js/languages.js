@@ -71,7 +71,7 @@
         selectPlan: 'Selecciona un plan',
         helloAlvinSubscriptionsBenefits: 'Beneficios al suscribirte a Hello Alvin',
         coronavirus: "Coronavirus (COVID-19) Estamos aquí para ti",
-        astheCoronavirus: 'Ya que la epidemia de coronavirus está en constante evolución, la necesidad de servicios médicos nunca había sido tan grande.Como resultado los tiempos de espera pueden ser más grandes',
+        astheCoronavirus: 'Ya que la epidemia de coronavirus está en constante evolución, la necesidad de servicios médicos nunca había sido tan grande. Como resultado los tiempos de espera pueden ser más grandes',
         selectYourPlan: 'Selecciona tu plan hoy',
         tapToSelect: 'Selecciona un plan, ingresa tu número de cuenta Curacao y has click en "Continuar"',
         monthly: 'EL DE MES A MES',
