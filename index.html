@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta ng-if="sys.idioma === 'en'" property="og:image" content="https://icuracao.com/pub/media/wysiwyg/curacao-logo.jpg" />
+    <meta ng-if="sys.idioma === 'en'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
     <meta ng-if="sys.idioma === 'en'" name="description" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
 
-    <meta ng-if="sys.idioma === 'es'" property="og:image" content="https://icuracao.com/pub/media/wysiwyg/curacao-logo.jpg" />
+    <meta ng-if="sys.idioma === 'es'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
     <meta ng-if="sys.idioma === 'es'" name="description" content="Habla con un Dr. 24/7 con Hello Alvin de Teledoc" />
 
     <title ng-if="sys.idioma === 'en'">Curacao - All the brands you love. Low Easy Payments!</title>
@@ -39,15 +39,15 @@
 <body ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91">
     <!--    <div ui-view></div>-->
     <!-- Nav-Bar -->
-    <nav class="navbar navbar-dark fixed-top bg-primary px-1 py-6">
+    <nav class="navbar navbar-dark fixed-top bg-primary p-1">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
             </a>
-            <a class="nav-link ml-auto text-white" href="tel:8552030399">
+            <!--<a class="nav-link ml-auto text-white" href="tel:8552030399">
                 <span class="desktop-only">855-203-0399</span>
                 <i class="mobile-only fas fa-phone"></i>
-            </a>
+            </a>-->
 
             <a class="nav-link text-white" href="" ng-click="sys.setIdioma()">
                 <!--<span><i class="fas fa-language fa-3x"></i></span>-->
