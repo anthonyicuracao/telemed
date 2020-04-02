@@ -2,20 +2,38 @@
 <html lang="en" ng-app="telemed">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Horacio" content="R." />
 
-    <meta ng-if="sys.idioma === 'en'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--<meta property="og:title" content="Curacao Health" />-->
+    <!--<meta property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
+    <!--<meta property="og:url" content="http://health.icuracao.com/" />-->
+
+    <meta property="og:image" content="http://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
+    <meta property="og:image:secure_url" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="400" />
+    <meta property="og:image:alt" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
+    <meta property="og:description" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
+
+
+
+    <!--<meta ng-if="sys.idioma === 'en'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
     <meta ng-if="sys.idioma === 'en'" name="description" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
 
-    <meta ng-if="sys.idioma === 'es'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
+    <!--<meta ng-if="sys.idioma === 'es'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
     <meta ng-if="sys.idioma === 'es'" name="description" content="Habla con un Dr. 24/7 con Hello Alvin de Teledoc" />
 
-    <title ng-if="sys.idioma === 'en'">Curacao - All the brands you love. Low Easy Payments!</title>
-    <title ng-if="sys.idioma === 'es'">TelMED - ¡Habla con un doctor 24/7 en video o por teléfono!</title>
+    <title ng-if="sys.idioma === 'en'">Curacao - Talk to a Dr. 24/7 with Hello Alvin by Teladoc</title>
+    <title ng-if="sys.idioma === 'es'">Curacao - Habla con un Dr. 24/7 con Hello Alvin de Teledoc</title>
 
 
     <link rel="icon" href="./assets/img/favicons/favicon.ico">
+
     <link rel="stylesheet" href="./assets/libs/flickity/dist/flickity.min.css">
     <link rel="stylesheet" href="./assets/libs/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="./assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
@@ -44,10 +62,10 @@
             <a class="navbar-brand" href="#">
                 <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
             </a>
-            <!--<a class="nav-link ml-auto text-white" href="tel:8552030399">
+            <a class="nav-link ml-auto text-white" href="tel:8552030399">
                 <span class="desktop-only">855-203-0399</span>
                 <i class="mobile-only fas fa-phone"></i>
-            </a>-->
+            </a>
 
             <a class="nav-link text-white" href="" ng-click="sys.setIdioma()">
                 <!--<span><i class="fas fa-language fa-3x"></i></span>-->

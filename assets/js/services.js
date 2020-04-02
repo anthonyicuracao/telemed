@@ -62,8 +62,8 @@ function sysDynHeader(sys, keyprod, keytest) {
     sys.keytest = keytest;
 
     //******** TEMP
-    keytest = 'zzztest';
-    sys.testMode = true;
+    //keytest = 'zzztest';
+    //sys.testMode = true;
     //******** TEMP
 
 
