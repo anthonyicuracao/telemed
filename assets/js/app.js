@@ -1,7 +1,8 @@
 var app = angular.module('telemed', [
-    //'ui.router',
+    'ui.router',
     'ngResource',
     'pascalprecht.translate',
+    'gavruk.card'
 ]);
 
 app.run(function ($rootScope, $translate) {
@@ -9,6 +10,14 @@ app.run(function ($rootScope, $translate) {
         idioma: 'en',
 };
     var sys = $rootScope.sys;
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+
+    if (url && url.searchParams && url.searchParams.get('test') === 'true'
+        || (url.port && '5500,5501,8000,8100'.indexOf(url.port) !== -1)) {
+        sys.testMode = true;
+    }
 
     sys.ajax = function (method, json, success, failure, message) {
         sys.loadingText = message || 'Loading';
