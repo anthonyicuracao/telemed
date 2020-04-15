@@ -25,8 +25,8 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         data.dob = null;
         data.mmn = '';
         data.termsOk = false;
+        data.cc = false;
     };
-
 
     $scope.reset = function () {
         data.plan = null;
@@ -34,9 +34,95 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         data.cust_id = '';
 
         $scope.clear();
+
+        if (url && url.searchParams && url.searchParams.get('cc') === 'true' ||
+            url.hostname === 'curacao-telemed-cc.azurewebsites.net') {
+            data.cc = true;
+
+            data.curacao = {
+                CELL: "",
+                CITY: "",
+                CUST_ID: "500-8777",
+                DOB: null,
+                EMAIL: "",
+                F_NAME: "",
+                GENDER: "",
+                L_NAME: "",
+                STATE: "",
+                STREET: "",
+                ZIP: "",
+                SANDBOX: sys.testMode
+            };
+            data.codeVerified = true;
+            data.curacao.EMAIL2 = '';
+
+            data.card = {
+                name: '',
+                number: '',
+                expiry: '',
+                expiryMonth: '',
+                expiryYear: '',
+                cvc: '',
+                dataValue: null,
+                dataDescriptor: null
+            };
+
+            if (sys.testMode) {
+                data.codeVerified = true;
+                data.password = 'Tony0000';
+                data.password2 = 'Tony0000';
+
+                data.curacao = {
+                    CELL: "2134345858",
+                    CITY: "Alhambra",
+                    CUST_ID: "500-8777",
+                    DOB: new Date(1967, 3, 15),
+                    EMAIL: "tony@bretado.com",
+                    EMAIL2: "tony@bretado.com",
+                    F_NAME: "Tony",
+                    GENDER: "M",
+                    L_NAME: "Bretado",
+                    STATE: "CA",
+                    STREET: "714 W Commonwealth Ave Unit B",
+                    ZIP: "91801",
+                    SANDBOX: sys.testMode
+                };
+
+                data.card = {
+                    name: 'Tony Bretado',
+                    number: '4111 1111 1111 1111',
+                    expiry: '10 / 2020',
+                    expiryMonth: '10',
+                    expiryYear: '2020',
+                    cvc: '900',
+                    dataValue: null,
+                    dataDescriptor: null
+                };
+            }
+            console.log(1, data)
+        }
+
     };
 
     $scope.reset();
+
+
+    $scope.cardPlaceholders = {
+        name: 'Your Full Name',
+        number: 'xxxx xxxx xxxx xxxx',
+        expiry: 'MM/YYYY',
+        cvc: 'xxx'
+    };
+
+    $scope.cardMessages = {
+        validDate: 'valid\nthru',
+        monthYear: 'MM/YYYY',
+    };
+
+    $scope.cardOptions = {
+        debug: false,
+        formatting: true
+    };
 
     $scope.getIdioma = function () {
         return (sys.idioma === 'en' ? 'eng' : 'esp');
@@ -62,7 +148,20 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
     $scope.onChange = function (tag) {
         var x;
 
-        if (data.curacao) {
+        if (tag === 'name' && data.curacao) {
+            data.card.name = data.curacao.F_NAME + ' ' + data.curacao.L_NAME
+
+        }
+        else if (tag === 'cc-number' && data.card.number) {
+            x = data.card.number;
+
+            if (x.length > 19) {
+                x = x.slice(0, 19);
+            }
+
+            data.card.number = x;
+        }
+        else if (data.curacao) {
             delete data.curacao;
         }
 
@@ -131,6 +230,19 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/;
             return re.test(data[tag]);
         }
+        else if (tag === 'cc-number' && data.card.number) {
+            return data.card.number.length >= 14; //including spaces
+        }
+        else if (tag === 'cc-month' && data.card.expiryMonth) {
+            return data.card.expiryMonth.length === 2;
+        }
+        else if (tag === 'cc-year' && data.card.expiryYear) {
+            return data.card.expiryYear.length === 4;
+        }
+        else if (tag === 'cc-cvc' && data.card.cvc) {
+            return data.card.cvc.length >= 3;
+        }
+        // last one
         else if (data.curacao) {
             return data.curacao[tag.toUpperCase()] && data.curacao[tag.toUpperCase()].toString().length > 0;
 
@@ -157,6 +269,12 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             && $scope.isOk('password2')
             && data.password === data.password2
             && data.termsOk
+            && (!data.cc || (
+                $scope.isOk('cc-number')
+                && $scope.isOk('cc-month')
+                && $scope.isOk('cc-year')
+                && $scope.isOk('cc-cvc')
+            ))
             ;
     };
 
@@ -277,10 +395,76 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         );
     };
 
+    $scope.handleAnetInfo = function (o) {
+        console.log(1, o);
+
+        if (o.messages.resultCode === "Error") {
+            var i = 0;
+            var error = '';
+
+            while (i < o.messages.message.length) {
+                error += o.messages.message[i].code + ": " +
+                    o.messages.message[i].text + '; '
+                i = i + 1;
+            }
+
+            Swal.fire({
+                icon: 'error',
+                title: error
+            });
+        }
+        else {
+            $scope.pushTeleMed(o.opaqueData);
+        }
+    }
+
+    $scope.goAnet = function () {
+        if (data.cc) {
+            var authDataSandbox = {
+                clientKey: "87qJE9HqQx8dybaL397DGJ58kpp4LC64N56FuKnEZ7aq6JqrwrH476M3uA8T5SmV",
+                apiLoginID: "55uNBcE4tXD"
+            };
+
+            var authDataProduction = {
+                //clientKey: "6AJM9Bnx7TS4678nfWP84bmvRe6BDBR4Lmcf2dUCEg9bz4sn2htCaY4hS4P43gp4",
+                //apiLoginID: "57g9XLk5HG"
+                clientKey: "test-Bnx7TS4678nfWP84bmvRe6BDBR4Lmcf2dUCEg9bz4sn2htCaY4hS4P43gp4",
+                apiLoginID: "test-Lk5HG"
+            };
+
+            var authData = sys.testMode ? authDataSandbox : authDataProduction;
+
+            var cardData = {
+                cardNumber: data.card.number.replace(/[^0-9\-]/g, ''),
+                month: data.card.expiryMonth,
+                year: data.card.expiryYear.slice(-2),
+                cardCode: data.card.cvc
+            };
+
+            var secureData = {
+                authData: authData,
+                cardData: cardData
+            };
+
+            console.log(secureData);
+
+            Accept.dispatchData(secureData, $scope.handleAnetInfo);
+        }
+        else {
+            $scope.pushTeleMed();
+        }
+    }
+
+
     //pushTeleMed
-    $scope.pushTeleMed = function () {
+    $scope.pushTeleMed = function (anetInfo) {
         data.curacao.PLAN = data.plan;
         data.curacao.pass = data.password;
+
+        if (anetInfo) {
+            data.curacao.anet = anetInfo;
+        }
+
         sys.ajax(
             ArAPI.pushTeleMed,
             data.curacao,

@@ -4,8 +4,8 @@
         <a class="navbar-brand" href="#">
             <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
         </a>
-        <a class="nav-link ml-auto text-white" href="tel:8002872226">
-            <span class="desktop-only">800-287-2226</span>
+        <a class="nav-link ml-auto text-white" href="tel:8662186111">
+            <span class="desktop-only">866-218-6111</span>
             <i class="mobile-only fas fa-phone"></i>
         </a>
 
@@ -26,7 +26,7 @@
             </div>
             <div class="col-12 col-md-7 text-left">
                 <div class="position-relative mt-n4">
-                    <video style="max-width: 350px;" class="img-fluid w-50 mt-14 mb-5" controls muted autoplay loop>
+                    <video style="max-width: 350px;" class="img-fluid w-50 mt-8 mb-5" controls muted autoplay loop>
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit-smaller.mp4" type="video/mp4">
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.webm" type="video/webm">
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.ogv" type="video/ogv">
@@ -130,6 +130,7 @@
         </div>
     </div>
 </div>
+
 <!--Plans Start-->
 <div id="selectYourPlan" class="p-4">
     <div class="container">
@@ -161,7 +162,7 @@
         </div>
     </div>
     <!-- Enter Account #1 - MOB -->
-    <div id="enterAccount1" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === 'M'">
+    <div id="enterAccount1" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === 'M' && !data.cc">
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center">
@@ -219,7 +220,7 @@
         </div>
     </div>
     <!-- Enter Account #2 - MOB -->
-    <div id="enterAccount2" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '1'">
+    <div id="enterAccount2" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '1' && !data.cc">
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center">
@@ -280,7 +281,7 @@
         </div>
     </div>
     <!-- Enter Account #3 - MOB -->
-    <div id="enterAccount3" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '2'">
+    <div id="enterAccount3" class="m-only container max-auto w-lg-50 mt-4" ng-if="data.plan === '2' && !data.cc">
         <div class="row">
             <div class="col text-center">
                 <p class="h-neue-b text-gray-500 text-center">
@@ -320,7 +321,7 @@
     </div>
 </div>
 <!-- Enter Account #4 - PC -->
-<div id="enterAccount4" style="display: none;" class="d-only container max-auto w-lg-50 mt-4">
+<div id="enterAccount4" class="d-only container max-auto w-lg-50 mt-4" ng-if="'M12'.indexOf(data.plan) !== -1 && !data.cc">
     <div class="row">
         <div class="col text-center">
             <p class="h-neue-b text-gray-500 text-center">
@@ -365,7 +366,7 @@
     </div>
 </div>
 <!-- Review and Complete FORM -->
-<section id="editCollapseParentOne" ng-if="data.codeVerified">
+<section id="editCollapseParentOne" ng-if="data.codeVerified && 'M12'.indexOf(data.plan) !== -1">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -376,36 +377,38 @@
         </div>
     </div>
     <div class="container">
-        <form class="bg-primary-soft p-3">
+        <form class="bg-primary-soft p-3" autocomplete="off">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'firstName'|translate}}
                             <span ng-if="!isOk('f_name')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.F_NAME">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.F_NAME"
+                               ng-change="onChange('name')">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'lastName'|translate}}
                             <span ng-if="!isOk('l_name')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.L_NAME">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.L_NAME"
+                               ng-change="onChange('name')">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'email'|translate}}
                             <span ng-if="!isOk('email')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                         </label>
-                        <input id="email" class="form-control" type="email" ng-model="data.curacao.EMAIL">
+                        <input id="email" class="form-control form-control-xs" type="email" ng-model="data.curacao.EMAIL">
                     </div>
                 </div>
-                <div class="col-lg-4 offset-lg-8">
+                <div class="col-lg-4 offset-lg-8 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'confirmEmail'|translate}}
@@ -413,11 +416,11 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input id="email2" class="form-control" type="email" ng-model="data.curacao.EMAIL2">
+                        <input id="email2" class="form-control form-control-xs" type="email" ng-model="data.curacao.EMAIL2">
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'gender'|translate}}
@@ -425,14 +428,14 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <select class="from-control custom-select mr-sm-2" ng-model="data.curacao.GENDER" ng-change="test()">
+                        <select class="form-control form-control-xs custom-select mr-sm-2" ng-model="data.curacao.GENDER" ng-change="test()">
                             <option value="M">{{'male'|translate}}</option>
                             <option value="F">{{'female'|translate}}</option>
                             <option value="O">{{'other'|translate}}</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'dob'|translate}}
@@ -440,10 +443,10 @@
                         <span ng-if="!isOk('dob2')">
                             <i class="fas fa-exclamation-triangle text-danger"></i>
                         </span>
-                        <input class="form-control" type="date" ng-model="data.curacao.DOB">
+                        <input class="form-control form-control-xs" type="date" ng-model="data.curacao.DOB">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label>
                             {{'cellular'|translate}}
@@ -451,7 +454,7 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input class="form-control" type="tel" ng-model="data.curacao.CELL">
+                        <input class="form-control form-control-xs" type="tel" ng-model="data.curacao.CELL">
                     </div>
                 </div>
 
@@ -464,10 +467,10 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.STREET">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.STREET">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="form-group">
                         <label>
                             {{'city'|translate}}
@@ -475,10 +478,10 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.CITY">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.CITY">
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'state'|translate}}
@@ -486,10 +489,11 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.STATE">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.STATE"
+                               maxlength="2">
                     </div>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-3 col-sm-6">
                     <div class="form-group">
                         <label>
                             {{'zip'|translate}}
@@ -497,7 +501,8 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input class="form-control" type="text" ng-model="data.curacao.ZIP">
+                        <input class="form-control form-control-xs" type="text" ng-model="data.curacao.ZIP"
+                               maxlength="5">
                     </div>
                 </div>
 
@@ -519,7 +524,7 @@
                             {{'password'|translate}}
                             <span ng-if="!isOk('password')"><i class="fas fa-exclamation-triangle text-danger"></i></span>
                         </label>
-                        <input id="password" class="form-control" type="password" ng-model="data.password">
+                        <input id="password" class="form-control form-control-xs" type="password" ng-model="data.password">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -530,7 +535,7 @@
                                 <i class="fas fa-exclamation-triangle text-danger"></i>
                             </span>
                         </label>
-                        <input id="password2" class="form-control" type="password" ng-model="data.password2">
+                        <input id="password2" class="form-control form-control-xs" type="password" ng-model="data.password2">
                     </div>
                 </div>
             </div>
@@ -546,6 +551,69 @@
 
         <div class="container p-3 bg-primary-soft">
             <div class="row">
+                <!-- CARD -->
+                <div class="col-12 col-md-6">
+                    <form class="form-row"
+                          name="cardForm"
+                          data-card
+                          data-width="300"
+                          data-card-container="#card-container"
+                          data-placeholders="cardPlaceholders"
+                          data-options="cardOptions"
+                          data-messages="cardMessages">
+
+                        <div class="col-12 pl-4">
+                            <div class="form-row align-items-center">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold mb-0">Card Number</label>
+                                        <input class="form-control form-control-xs" type="text" placeholder="•••• •••• •••• ••••"
+                                               ng-class="{'bg-danger-soft':!isOk('cc-number')}"
+                                               name="CardNumber" card-number ng-model="data.card.number" ng-change="onChange('cc-number')">
+                                        <input hidden class="form-control form-control-xs" placeholder="Full name" type="text"
+                                               name="CardName" card-name ng-model="data.card.name" />
+                                        <!--<input hidden name="dataValue" id="dataValue" ng-model="data.card.dataValue"/>-->
+                                        <!--<input hidden name="dataDescriptor" id="dataDescriptor" ng-model="data.card.dataDescriptor"/>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row align-items-center">
+                                <div class="col-6 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold mb-0">Exp Month</label>
+                                        <input class="form-control form-control-xs" type="text" placeholder="MM"
+                                               ng-class="{'bg-danger-soft':!isOk('cc-month')}"
+                                               name="CardExpiryMonth" card-expiry="month" ng-model="data.card.expiryMonth">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold mb-0">Exp Year</label>
+                                        <input class="form-control form-control-xs" type="text" placeholder="YYYY"
+                                               ng-class="{'bg-danger-soft':!isOk('cc-year')}"
+                                               name="CardExpiryYear" card-expiry="year" ng-model="data.card.expiryYear">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="font-weight-bold mb-0">CVC</label>
+                                        <input class="form-control form-control-xs" type="text" placeholder="1234" maxlength="4" pattern="[0-9]{3,4}"
+                                               ng-class="{'bg-danger-soft':!isOk('cc-cvc')}"
+                                               name="CardCvc" card-cvc ng-model="data.card.cvc">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-12 col-md-6">
+
+                    <div id="card-container"></div>
+
+                </div>
+
                 <div class="col-md-6 text-center text-md-left">
                     <h5 class="text-primary m-0">{{'customer'|translate}}:</h5>
                     <h4 class="mb-1">{{data.curacao.F_NAME}} {{data.curacao.L_NAME}}</h4>
@@ -568,7 +636,7 @@
                     </div>
 
 
-                    <button class="btn btn-success mt-3 px-5" type="submit" ng-click="pushTeleMed()"
+                    <button class="btn btn-success mt-3 px-5" type="submit" ng-click="goAnet()"
                             ng-disabled="!confirmButtonOk()"
                             ng-if="!data.paid">
 
