@@ -7,8 +7,6 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
     var url_string = window.location.href;
     var url = new URL(url_string);
 
-    console.log(url);
-
     if (url && url.searchParams && url.searchParams.get('l') === 'es') {
         sys.idioma = 'es';
         $translate.use(sys.idioma);
@@ -26,7 +24,25 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         data.mmn = '';
         data.termsOk = false;
         data.cc = false;
+        data.paymentMethod = '';
     };
+
+    $scope.selectPlan = function () {
+        if (data.plan === 'M') {
+            data.price = 40;
+        }
+        else if (data.plan === '1') {
+            data.price = 359;
+        }
+        else if (data.plan === '2') {
+            data.price = 599;
+        }
+        else {
+            data.price = 0;
+        }
+
+        return;
+    }
 
     $scope.reset = function () {
         data.plan = null;
@@ -35,9 +51,9 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
 
         $scope.clear();
 
-        if (url && url.searchParams && url.searchParams.get('cc') === 'true' ||
-            url.hostname === 'curacao-telemed-cc.azurewebsites.net') {
+        if (sys.cc) {
             data.cc = true;
+            data.paymentMethod = 'cc';
 
             data.curacao = {
                 CELL: "",
@@ -71,7 +87,8 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
                 data.codeVerified = true;
                 data.password = 'Tony0000';
                 data.password2 = 'Tony0000';
-
+                data.plan = '1';
+                $scope.selectPlan();
                 data.curacao = {
                     CELL: "2134345858",
                     CITY: "Alhambra",
@@ -99,13 +116,10 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
                     dataDescriptor: null
                 };
             }
-            console.log(1, data)
         }
-
     };
 
     $scope.reset();
-
 
     $scope.cardPlaceholders = {
         name: 'Your Full Name',
@@ -126,23 +140,6 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
 
     $scope.getIdioma = function () {
         return (sys.idioma === 'en' ? 'eng' : 'esp');
-    }
-
-    $scope.selectPlan = function () {
-        if (data.plan === 'M') {
-            data.price = 40;
-        }
-        else if (data.plan === '1') {
-            data.price = 359;
-        }
-        else if (data.plan === '2') {
-            data.price = 599;
-        }
-        else {
-            data.price = 0;
-        }
-
-        return;
     }
 
     $scope.onChange = function (tag) {
@@ -230,16 +227,16 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/;
             return re.test(data[tag]);
         }
-        else if (tag === 'cc-number' && data.card.number) {
+        else if (tag === 'cc-number' && data.card && data.card.number) {
             return data.card.number.length >= 14; //including spaces
         }
-        else if (tag === 'cc-month' && data.card.expiryMonth) {
+        else if (tag === 'cc-month' && data.card && data.card.expiryMonth) {
             return data.card.expiryMonth.length === 2;
         }
-        else if (tag === 'cc-year' && data.card.expiryYear) {
+        else if (tag === 'cc-year' && data.card && data.card.expiryYear) {
             return data.card.expiryYear.length === 4;
         }
-        else if (tag === 'cc-cvc' && data.card.cvc) {
+        else if (tag === 'cc-cvc' && data.card && data.card.cvc) {
             return data.card.cvc.length >= 3;
         }
         // last one
@@ -250,7 +247,6 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
 
         return false;
     };
-
 
     $scope.confirmButtonOk = function () {
         return data.curacao
@@ -373,7 +369,22 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
                     data.curacao.DOB = new Date(moment.tz(data.curacao.DOB, "America/Los_Angeles").format());
                     data.curacao.EMAIL2 = '';
 
+                    if (sys.testMode) {
+                        data.curacao.EMAIL2 = data.curacao.EMAIL;
+                        data.curacao.GENDER = 'M';
+                        data.password = 'Tony0000';
+                        data.password2 = 'Tony0000';
+                        data.paymentMethod = data.cc ? 'cc' : 'curacao';
+                        data.plan = '1';
+                        $scope.selectPlan();
+                    }
+
                     console.log(data.curacao);
+                    $('#account-verification').on('hidden.bs.modal', function (e) {
+                        console.log(-20)
+                        document.getElementById('editCollapseParentOne').scrollIntoView();
+                        window.scrollBy(0, -50)
+                    }) 
                     $('#account-verification').modal('hide');
 
                 }
@@ -395,6 +406,18 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         );
     };
 
+    $scope.scrollTo = function (tag) {
+        console.log(tag)
+        document.getElementById(tag).scrollIntoView();
+        window.scrollBy(0, -50)
+    }
+
+    if (sys.testMode && !data.cc) {
+        data.cust_id = '571-8214';
+        data.last4ssn = '6680';
+        $scope.verifyCode();
+    }
+
     $scope.handleAnetInfo = function (o) {
         console.log(1, o);
 
@@ -414,7 +437,8 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             });
         }
         else {
-            $scope.pushTeleMed(o.opaqueData);
+            data.curacao.anet = o.opaqueData;
+            $scope.pushTeleMed();
         }
     }
 
@@ -457,13 +481,26 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
 
 
     //pushTeleMed
-    $scope.pushTeleMed = function (anetInfo) {
+    $scope.pushTeleMed = function () {
         data.curacao.PLAN = data.plan;
         data.curacao.pass = data.password;
 
-        if (anetInfo) {
-            data.curacao.anet = anetInfo;
-        }
+        Swal.fire({
+            icon: 'info',
+            title: 'Creating Order',
+            html: 'Please wait until we display the results.',
+            timer: 1000 * 60 * 5,
+            onBeforeOpen: () => {
+                data.loading = true;
+                Swal.showLoading()
+            },
+            onClose: () => {
+                console.log(22)
+            }
+        }).then((result) => {
+            console.log(11, result)
+        })
+
 
         sys.ajax(
             ArAPI.pushTeleMed,
@@ -473,6 +510,10 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
                     document.activeElement.blur();
                     console.log(obj);
                     data.paid = true;
+
+                    if (data.loading) {
+                        Swal.close()
+                    }
 
                     Swal.fire({
                         title: '<strong class="text-primary">Thank you for your order!</strong>',
@@ -500,7 +541,59 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
                     })
                 }
             },
+            function () {
+                if (data.loading) {
+                    Swal.close()
+                }
+            }
         );
     };
 
+    $scope.createOrder = function (data, actions) {
+        // This function sets up the details of the transaction, including the amount and line item details.
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: $scope.data.price.toString()
+                }
+            }]
+        });
+    }
+
+    $scope.onApprove = function (o, actions) {
+        console.log(o, actions)
+        data.curacao.paypal = {};
+        data.curacao.paypal.approval = o;
+        // This function captures the funds from the transaction.
+        return actions.order.capture().then(function (details) {
+            console.log(details)
+            data.curacao.paypal.capture = details;
+            $scope.pushTeleMed();
+            //// This function shows a transaction success message to your buyer.
+            ////alert('Transaction completed by ' + details.payer.name.given_name);
+            //Swal.fire({
+            //    title: '<strong class="text-primary">Thank you for your order!</strong>',
+            //    icon: 'success',
+            //    html: 'Transaction completed by : <b>' + details.payer.name.given_name + '</b>',
+            //    showCloseButton: true,
+            //    confirmButtonText:
+            //        '<i class="fa fa-thumbs-up"></i> Great!',
+            //}).then(() => {
+            //    //$rootScope.$apply(function () {
+            //    //    $scope.reset();
+            //    //    window.scrollTo(0, 0);
+            //    //});
+
+            //})
+        });
+    }
+
+    paypal.Buttons(
+        {
+            createOrder: $scope.createOrder,
+            onApprove: $scope.onApprove
+        }
+    ).render('#paypal-button-container');
+
 })
+

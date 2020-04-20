@@ -3,6 +3,7 @@
     <div class="container">
         <a class="navbar-brand" href="#">
             <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
+            <span class="font-size-lg">v1.2</span>
         </a>
         <a class="nav-link ml-auto text-white" href="tel:8662186111">
             <span class="desktop-only">866-218-6111</span>
@@ -32,7 +33,8 @@
                         <source src="https://icuracao.com/media/assets/calmed/video/AlvinVideLiveVIsit.ogv" type="video/ogv">
                     </video>
                 </div>
-                <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">{{'selectPlan' | translate}}</a>
+                <button ng-click="scrollTo('selectYourPlan')" data-toggle="smooth-scroll" class="btn btn-secondary mb-4">{{'selectPlan' | translate}}</button>
+
             </div>
         </div>
     </div>
@@ -54,7 +56,9 @@
                 </video>
             </div>
             <p class="amplesoft-b" style="font-size: 3.5rem; line-height: 1;">{{'talkTo'|translate}}</p>
-            <div class="mx-3"> <a href="#selectYourPlan" data-toggle="smooth-scroll" class="btn-block btn btn-secondary">{{'selectPlan' | translate}}</a> </div>
+            <div class="mx-3">
+                <button ng-click="scrollTo('selectYourPlan')" data-toggle="smooth-scroll" class="btn-block btn btn-secondary">{{'selectPlan' | translate}}</button>
+            </div>
         </div>
     </div>
 </section>
@@ -357,7 +361,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div id="disclaimer" class="container">
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto text-left">
             <small ng-if="sys.idioma === 'en'" class="text-gray-500"><span class="font-weight-bold" style="vertical-align: text-bottom;">2</span> Compared with $40.00 monthly plan. <span class="font-weight-bold" style="vertical-align: text-bottom;">3</span> This is a subscription plan with commitment. After the subscription expires (12 or 24 months), the plan will be converted into a month-to-month plan that you can cancel at any time.</small>
@@ -366,7 +370,7 @@
     </div>
 </div>
 <!-- Review and Complete FORM -->
-<section id="editCollapseParentOne" ng-if="data.codeVerified && 'M12'.indexOf(data.plan) !== -1">
+<section id="editCollapseParentOne" ng-hide="!data.codeVerified || 'M12'.indexOf(data.plan) === -1">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -377,7 +381,7 @@
         </div>
     </div>
     <div class="container">
-        <form class="bg-primary-soft p-3" autocomplete="off">
+        <form id="form1" class="bg-primary-soft p-3" autocomplete="off">
             <div class="row">
                 <div class="col-lg-4 col-sm-6">
                     <div class="form-group">
@@ -507,7 +511,7 @@
                 </div>
 
                 <div class="col-12">
-                    <hr class="border-dashed d-blockmy-4 bg-primary">
+                    <hr class="border-dashed d-block my-4 bg-primary">
                 </div>
 
                 <div class="col-lg-4">
@@ -540,6 +544,7 @@
                 </div>
             </div>
         </form>
+
         <!-- Submit Order -->
         <div class="container">
             <div class="row">
@@ -550,17 +555,42 @@
         </div>
 
         <div class="container p-3 bg-primary-soft">
+            <!-- Payment Method -->
             <div class="row">
+                <div class="col-12 p-0">
+                    <h5 class="p-3 bg-light m-0">
+                        Payment Method
+                    </h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Credit Card -->
+                <div class="col-12 p-3" ng-if="data.cc">
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio"
+                               ng-model="data.paymentMethod" value="cc"
+                               name="payment-method" id="credit-card" />
+                        <label class="custom-control-label" for="credit-card">
+                            <span class="d-flex align-items-center font-size-h6">
+                                Credit Card
+                                <img class="d-inline-block ml-2"
+                                     src="../assets/img/icons/icon-payment-methods.png" height="30" alt="">
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- CARD -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 p-3" ng-if="data.cc">
                     <form class="form-row"
                           name="cardForm"
                           data-card
                           data-width="300"
-                          data-card-container="#card-container"
                           data-placeholders="cardPlaceholders"
                           data-options="cardOptions"
                           data-messages="cardMessages">
+                        <!--data-card-container="#card-container"-->
 
                         <div class="col-12 pl-4">
                             <div class="form-row align-items-center">
@@ -569,6 +599,7 @@
                                         <label class="font-weight-bold mb-0">Card Number</label>
                                         <input class="form-control form-control-xs" type="text" placeholder="•••• •••• •••• ••••"
                                                ng-class="{'bg-danger-soft':!isOk('cc-number')}"
+                                               ng-disabled="data.paymentMethod !== 'cc'"
                                                name="CardNumber" card-number ng-model="data.card.number" ng-change="onChange('cc-number')">
                                         <input hidden class="form-control form-control-xs" placeholder="Full name" type="text"
                                                name="CardName" card-name ng-model="data.card.name" />
@@ -584,6 +615,7 @@
                                         <label class="font-weight-bold mb-0">Exp Month</label>
                                         <input class="form-control form-control-xs" type="text" placeholder="MM"
                                                ng-class="{'bg-danger-soft':!isOk('cc-month')}"
+                                               ng-disabled="data.paymentMethod !== 'cc'"
                                                name="CardExpiryMonth" card-expiry="month" ng-model="data.card.expiryMonth">
                                     </div>
                                 </div>
@@ -592,6 +624,7 @@
                                         <label class="font-weight-bold mb-0">Exp Year</label>
                                         <input class="form-control form-control-xs" type="text" placeholder="YYYY"
                                                ng-class="{'bg-danger-soft':!isOk('cc-year')}"
+                                               ng-disabled="data.paymentMethod !== 'cc'"
                                                name="CardExpiryYear" card-expiry="year" ng-model="data.card.expiryYear">
                                     </div>
                                 </div>
@@ -600,6 +633,7 @@
                                         <label class="font-weight-bold mb-0">CVC</label>
                                         <input class="form-control form-control-xs" type="text" placeholder="1234" maxlength="4" pattern="[0-9]{3,4}"
                                                ng-class="{'bg-danger-soft':!isOk('cc-cvc')}"
+                                               ng-disabled="data.paymentMethod !== 'cc'"
                                                name="CardCvc" card-cvc ng-model="data.card.cvc">
                                     </div>
                                 </div>
@@ -608,13 +642,27 @@
                     </form>
                 </div>
 
-                <div class="col-12 col-md-6">
-
+                <!--<div class="col-12 col-md-6">
                     <div id="card-container"></div>
-
+                </div>-->
+                <!-- Curacao Credit -->
+                <div class="col-12 p-3" ng-if="!data.cc">
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio"
+                               ng-model="data.paymentMethod" value="curacao"
+                               name="payment-method" id="curacao-credit" />
+                        <label class="d-flex align-items-center custom-control-label" for="curacao-credit">
+                            <span class="d-flex align-items-center font-size-h6">
+                                Curacao Credit
+                                <img class="d-inline-block ml-2"
+                                     src="./assets/img/favicons/favicon.ico" height="25" alt="">
+                            </span>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="col-md-6 text-center text-md-left">
+                <!-- Customer Information -->
+                <div class="col-12 col-md-6 text-center text-md-left p-3" ng-if="!data.cc">
                     <h5 class="text-primary m-0">{{'customer'|translate}}:</h5>
                     <h4 class="mb-1">{{data.curacao.F_NAME}} {{data.curacao.L_NAME}}</h4>
                     <p class="mb-1 fs--1">
@@ -623,21 +671,25 @@
                     <p class="mb-0 fs--1"> <strong>{{'email'|translate}}: </strong><a ng-href="mailto:{{data.curacao.EMAIL}}">{{data.curacao.EMAIL}}</a></p>
                     <p class="mb-0 fs--1"> <strong>{{'phone'|translate}}: </strong><a ng-href="tel:{{data.curacao.CELL}}">{{data.curacao.CELL}}</a></p>
                 </div>
-                <div class="col-md-6 text-center">
+
+                <!-- Confirm & Pay -->
+                <div class="col-12 col-md-6 text-center p-3" ng-hide="data.paymentMethod === 'paypal'">
                     <hr class="border-dashed d-block d-md-none my-4">
                     <h4 class="font-weight-bold">{{'allTotal'|translate}}: <span class="text-primary">${{data.price}}</span></h4>
 
                     <!-- <div class="col-12 pb-5 text-center" style="line-height: 1.75;">
                     </div> -->
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" id="modalNewsletterVerticalCheckbox" type="checkbox" ng-model="data.termsOk">
+                        <input class="custom-control-input" id="modalNewsletterVerticalCheckbox" type="checkbox"
+                               ng-disabled="data.paymentMethod === 'paypal'"
+                               ng-model="data.termsOk">
                         <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'en'">By clicking this box you agree to the <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Terms &amp; Conditions</a></label>
                         <label class="custom-control-label font-size-xs" for="modalNewsletterVerticalCheckbox" ng-if="sys.idioma === 'es'">Al hacer click en la caja aceptas los <a href="./20200329_HelloAlvin_T&C.pdf" target="_blank" rel="noreferrer noopener">Términos y Condiciones</a></label>
                     </div>
 
 
                     <button class="btn btn-success mt-3 px-5" type="submit" ng-click="goAnet()"
-                            ng-disabled="!confirmButtonOk()"
+                            ng-disabled="!confirmButtonOk() || data.paymentMethod === 'paypal'"
                             ng-if="!data.paid">
 
                         <span ng-if="sys.loading">
@@ -654,6 +706,24 @@
                     <!-- <p ng-if="sys.idioma === 'en'" class="fs--1 mt-3 mb-0">By clicking <strong>Confirm & Pay </strong>button you agree to the <a href="#!">Terms &amp; Conditions</a></p>
                     <p ng-if="sys.idioma === 'es'" class="fs--1 mt-3 mb-0">Al hacer click en el botón <strong>Confirmar y Pagar </strong>aceptas los <a href="#!">Términos y Condiciones</a></p> -->
                 </div>
+
+                <!-- PayPal -->
+                <div class="col-12" ng-if="data.cc">
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio"
+                               ng-model="data.paymentMethod" value="paypal"
+                               name="payment-method" id="paypal" />
+                        <label class="custom-control-label" for="paypal">
+                            <img class="d-inline-block ml-2"
+                                 src="../assets/img/icons/icon-paypal-full.png" height="25" alt="">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 p-3" ng-hide="!data.cc || data.paymentMethod !== 'paypal'">
+                    <div id="paypal-button-container"></div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -776,82 +846,140 @@
     </div>
 </div>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <ul ng-if="sys.idioma === 'en'" class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseOne">Do I need insurance to use the service? </a>
-                    <div class="collapse" id="faqCollapseOne" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. You do not need to have a health insurance plan to access our doctors and nurses 24/7. It's just like going to a walk-in urgent care or ER, except without all of the travel and high costs. And, if you need a prescription - they can write you one if they believe it to be medically needed. You'll also have 24/7 unlimited access to our Registered Nurse Line and Email-a-Doctor services at no additional cost.</p>
-                        </div>
+    <div class="accordion font-size-lg text-left font-weight-normal text-800" id="accordionExample" ng-if="sys.idioma === 'en'">
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingOne">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        Do I need insurance to use the service?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. You do not need to have a health insurance plan to access our doctors and nurses 24/7. It's just like going to a walk-in urgent care or ER, except without all of the travel and high costs. And, if you need a prescription - they can write you one if they believe it to be medically needed. You'll also have 24/7 unlimited access to our Registered Nurse Line and Email-a-Doctor services at no additional cost.
                     </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseTwo">Can I get a prescription? </a>
-                    <div class="collapse" id="faqCollapseTwo" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">If medically needed. It is up to the doctor to recommend the best treatment. Teladoc&#174; doctors do not issue prescriptions for substances controlled by the DEA, non-therapeutic, and/or certain other drugs which may be harmful because of their potential for abuse. Click here to view the current list of DEA controlled substances.</p>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingTwo">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        Can I get a prescription?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        If medically needed. It is up to the doctor to recommend the best treatment. Teladoc&#174; doctors do not issue prescriptions for substances controlled by the DEA, non-therapeutic, and/or certain other drugs which may be harmful because of their potential for abuse. Click here to view the current list of DEA controlled substances.
                     </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseThree">Is Hello Alvin&#174; health insurance? </a>
-                    <div class="collapse" id="faqCollapseThree" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. Alvin Healthcare, Hello Alvin&#174; and Alvin&#174; are not health insurance, but we help many people who are either without an insurance plan, have a high-deductible health plan (HDHP) or want the convenience of not having to spend time traveling to an Urgent Care or ER for a minor illness for them or their family member. Anyone can use Hello Alvin&#174;, whether insured or not.</p>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingThree">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        Is Hello Alvin&#174; health insurance?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. Alvin Healthcare, Hello Alvin&#174; and Alvin&#174; are not health insurance, but we help many people who are either without an insurance plan, have a high-deductible health plan (HDHP) or want the convenience of not having to spend time traveling to an Urgent Care or ER for a minor illness for them or their family member. Anyone can use Hello Alvin&#174;, whether insured or not.
                     </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseFour">Can I use Hello Alvin or Teladoc outside The United States? </a>
-                    <div class="collapse" id="faqCollapseFour" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. Hello Alvin&#174; and Teladoc consults are not available outside of the United States.</p>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingFour">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        Can I use Hello Alvin or Teladoc outside The United States?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. Hello Alvin&#174; and Teladoc consults are not available outside of the United States.
                     </div>
-                </li>
-            </ul>
-            <ul ng-if="sys.idioma === 'es'" class="list-group list-group-flush-x mb-9" id="faqCollapseParentOne">
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseOne">¿Necesito tener un seguro médico para usar este servicio? </a>
-                    <div class="collapse" id="faqCollapseOne" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. No necesitas tener un plan de seguro médico para acceder a nuestros médicos y enfermeras las 24 horas del día, 7 días a la semana. Es como ir a urgencias o emergencias, excepto sin todos los viajes y altos costos. Y, si necesitas una receta – ellos te pueden dar una si creen que es médicamente necesario. También tendrás acceso ilimitado las 24 horas del día, 7 días a la semana a nuestra Línea de Enfermeras Registradas y servicios de Correo electrónico a un Doctor (Email-a-Doctor) sin costo adicional.</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseTwo">¿Puedo obtener una receta? </a>
-                    <div class="collapse" id="faqCollapseTwo" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">
-                                Si, si es médicamente necesario. Depende del médico recomendar el mejor tratamiento.
-                                Los médicos de Teladoc&#174; no emiten recetas para sustancias controladas por la DEA, no terapéuticas y/o ciertos otros medicamentos que pueden ser perjudiciales debido a su potencial de abuso.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseThree">¿Es Hello Alvin&#174; una aseguranza médica? </a>
-                    <div class="collapse" id="faqCollapseThree" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. Alvin Healthcare, Hello Alvin&#174; y Alvin&#174; no son aseguranzas médicas, pero ayudamos a muchas personas que no tienen un plan de seguro, a personas que tienen un plan de salud de alto deducible (HDHP) o desean la comodidad de no tener que perder tiempo viajando a un cuidado de urgencias o urgencias para una enfermedad menor para ellos o su familiar. Cualquier persona puede usar Hello Alvin&#174;, con o sin aseguranza médica.</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <a class="dropdown-toggle d-block font-size-lg font-weight-bold text-reset" data-toggle="collapse" href="#faqCollapseFour">¿Puedo usar Hello Alvin&#174; o Teladoc&#174; fuera de los Estados Unidos?</a>
-                    <div class="collapse" id="faqCollapseFour" data-parent="#faqCollapseParentOne">
-                        <div class="mt-5">
-                            <p class="mb-0 font-size-lg text-gray-500">No. Las consultas con Hello Alvin&#174; y Teladoc&#174; no están disponibles fuera de los Estados Unidos.</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="accordion font-size-lg text-left font-weight-normal text-800" id="accordionExample" ng-if="sys.idioma === 'es'">
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingOne">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        ¿Necesito tener un seguro médico para usar este servicio?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. No necesitas tener un plan de seguro médico para acceder a nuestros médicos y enfermeras las 24 horas del día, 7 días a la semana. Es como ir a urgencias o emergencias, excepto sin todos los viajes y altos costos. Y, si necesitas una receta – ellos te pueden dar una si creen que es médicamente necesario. También tendrás acceso ilimitado las 24 horas del día, 7 días a la semana a nuestra Línea de Enfermeras Registradas y servicios de Correo electrónico a un Doctor (Email-a-Doctor) sin costo adicional.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingTwo">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        ¿Puedo obtener una receta?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        Los médicos de Teladoc&#174; no emiten recetas para sustancias controladas por la DEA, no terapéuticas y/o ciertos otros medicamentos que pueden ser perjudiciales debido a su potencial de abuso.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingThree">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        ¿Es Hello Alvin&#174; una aseguranza médica?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. Alvin Healthcare, Hello Alvin&#174; y Alvin&#174; no son aseguranzas médicas, pero ayudamos a muchas personas que no tienen un plan de seguro, a personas que tienen un plan de salud de alto deducible (HDHP) o desean la comodidad de no tener que perder tiempo viajando a un cuidado de urgencias o urgencias para una enfermedad menor para ellos o su familiar. Cualquier persona puede usar Hello Alvin&#174;, con o sin aseguranza médica.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-bottom rounded-0">
+            <div class="card-header py-0" id="headingFour">
+                <button class="btn btn-link text-decoration-none btn-block py-3 px-0 collapsed text-left" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <span class="fas fa-caret-right accordion-icon mr-3" data-fa-transform="shrink-2"></span><span class="font-weight-medium text-sans-serif text-900">
+                        ¿Puedo usar Hello Alvin&#174; o Teladoc&#174; fuera de los Estados Unidos?
+                    </span>
+                </button>
+            </div>
+            <div class="collapse" id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body pt-2">
+                    <div class="pl-4">
+                        No. Las consultas con Hello Alvin&#174; y Teladoc&#174; no están disponibles fuera de los Estados Unidos.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- pop up begin -->

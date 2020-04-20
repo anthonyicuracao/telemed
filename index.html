@@ -46,7 +46,7 @@
 
 </head>
 
-<body ng-controller="telemed-ctrl" data-spy="scroll" data-target=".navbar" data-offset="91">
+<body data-spy="scroll" data-target=".navbar" data-offset="91">
     <div ui-view>
         <div style="padding: 20% 15px;text-align:center;background-color:#8dc253;height:100vh;width:100%;" class="">
             <img src="./assets/img/telemed/logo-eng.png" width="260" />
@@ -76,12 +76,14 @@
     <!--<script src="https://jstest.authorize.net/v1/Accept.js" charset="utf-8"></script>-->
     <!-- Authorize.Net PRODUCTION -->
     <!--<script src="https://js.authorize.net/v1/Accept.js" charset="utf-8"></script>-->
-
     <!-- Authorize.Net SANDBOX -->
     <script src="https://jstest.authorize.net/v1/Accept.js" charset="utf-8" ng-if="sys.testMode"></script>
 
     <!-- Authorize.Net PRODUCTION -->
     <script src="https://js.authorize.net/v1/Accept.js" charset="utf-8" ng-if="!sys.testMode"></script>
+
+    <!-- Paypal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AQE07JPfzeP7AbgW3RnUZFSIQyOJs_auCzBK1b18Av8Ntov-DlmA1t-kx3I0st-HlhcUSxuuNJnSQ7-x"></script>
 
     <!-- Angular -->
     <script src="./bower_components/angular/angular.min.js"></script>
@@ -96,8 +98,6 @@
     <script src="./assets/js/languages.js"></script>
     <script src="./assets/js/controllers.js"></script>
     <script src="./assets/js/routes.js"></script>
-
-
 </body>
 
 

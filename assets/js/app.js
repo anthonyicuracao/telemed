@@ -14,9 +14,23 @@ app.run(function ($rootScope, $translate) {
     var url_string = window.location.href;
     var url = new URL(url_string);
 
-    if (url && url.searchParams && url.searchParams.get('test') === 'true'
-        || (url.port && '5500,5501,8000,8100'.indexOf(url.port) !== -1)) {
+    console.log(url)
+    if (url.port && '5500,5501,8000,8100'.indexOf(url.port) !== -1) {
         sys.testMode = true;
+    }
+
+    if (url && url.searchParams && url.searchParams.get('test') !== null) {
+        sys.testMode = url.searchParams.get('test') === 'true';
+    }
+
+    if (url && url.searchParams && url.searchParams.get('l') === 'es') {
+        sys.idioma = 'es';
+        $translate.use(sys.idioma);
+    }
+
+    if (url && url.searchParams && url.searchParams.get('cc') === 'true' ||
+        url.hostname === 'curacao-telemed-cc.azurewebsites.net') {
+        sys.cc = true;
     }
 
     sys.ajax = function (method, json, success, failure, message) {

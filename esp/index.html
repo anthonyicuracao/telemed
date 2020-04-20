@@ -1,0 +1,18 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head></head>
+
+<body>
+<script>
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+
+    if (url) {
+        c = url.origin + url.search + (url.search ? '&' : '?') + 'l=es';
+        document.location.href = c;
+    }
+</script>
+</body>
+
+</html>
