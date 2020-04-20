@@ -20330,7 +20330,19 @@ body {
 }
 
 [data-toggle=collapse] {
-    height:inherit !important;
-    white-space:normal !important;
-    text-transform:none;
+    height: inherit !important;
+    white-space: normal !important;
+    text-transform: none;
+}
+
+@media screen and (max-width: 767px) {
+    .promo-desktop {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .promo-mobile {
+        display: none;
+    }
 }
