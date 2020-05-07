@@ -48,6 +48,8 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         data.plan = null;
         data.price = 0;
         data.cust_id = '';
+        data.dob = null;
+        data.emp_id = '';
 
         $scope.clear();
 
@@ -190,6 +192,9 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
         if (tag === 'cust_id') {
             return data.cust_id.toString().length === 7 || data.cust_id.toString().length === 8;
         }
+        else if (tag === 'emp_id') {
+            return data.emp_id && data.emp_id.length === 3;
+        }
         else if (tag === 'email2') {
             return data.curacao
                 && data.curacao[tag.toUpperCase()]
@@ -216,7 +221,6 @@ app.controller('telemed-ctrl', function ($scope, $rootScope, ArAPI, $filter, $tr
             return re.test(data[tag]);
         }
         else if (tag === 'dob' && data[tag]) {
-            console.log(data[tag])
             age = moment().diff(moment($filter('date')(new Date(data[tag]), 'yyyyMMdd'), 'YYYYMMDD'), 'years');
             return age >= 18;
         }

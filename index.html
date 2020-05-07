@@ -2,15 +2,22 @@
 <html lang="en" ng-app="telemed">
 
 <head>
-    <meta name="Horacio" content="R." />
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KRPVSQG');
+    </script>
+    <!-- End Google Tag Manager -->
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--<meta property="og:title" content="Curacao Health" />-->
-    <!--<meta property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
-    <!--<meta property="og:url" content="http://health.icuracao.com/" />-->
 
     <meta property="og:image" content="http://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
     <meta property="og:image:secure_url" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />
@@ -22,10 +29,7 @@
 
 
 
-    <!--<meta ng-if="sys.idioma === 'en'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
     <meta ng-if="sys.idioma === 'en'" name="description" content="Talk to a Dr. 24/7 with Hello Alvin by Teladoc" />
-
-    <!--<meta ng-if="sys.idioma === 'es'" property="og:image" content="https://curacao-telemed-customers.azurewebsites.net/assets/img/telmed-content/TeleDoc-1080x1080.png" />-->
     <meta ng-if="sys.idioma === 'es'" name="description" content="Habla con un Dr. 24/7 con Hello Alvin de Teledoc" />
 
     <title ng-if="sys.idioma === 'en'">Curacao - Talk to a Dr. 24/7 with Hello Alvin by Teladoc</title>
@@ -47,6 +51,13 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="91">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRPVSQG"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div ui-view>
         <div style="padding: 20% 15px;text-align:center;background-color:#8dc253;height:100vh;width:100%;" class="">
             <img src="./assets/img/telemed/logo-eng.png" width="260" />
@@ -69,6 +80,7 @@
     <script src="./assets/libs/moment/moment-timezone-with-data.min.js"></script>
     <script src="./assets/js/theme.min.js"></script>
     <script src="./assets/js/format.js"></script>
+
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="./node_modules/card/dist/card.js"></script>
 

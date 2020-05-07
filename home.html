@@ -1,8 +1,8 @@
-﻿    <!-- Nav-Bar -->
+﻿<!-- Nav-Bar -->
 <nav class="navbar navbar-dark fixed-top bg-primary p-1">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{getIdioma()}}.png">
+            <img alt="curacao" class="telemed-logo" ng-src="./assets/img/telemed/logo-{{sys.getIdioma()}}.png">
             <span class="font-size-lg">v1.2</span>
         </a>
         <a class="nav-link ml-auto text-white" href="tel:8662186111">
@@ -16,6 +16,7 @@
         </a>
     </div>
 </nav>
+
 <!--Header with video PC starts -->
 <section class="desktop-only">
     <img src="./assets/img/telmed-content/telemed-header-PC-eng.jpg" alt="Curacao" class="img-fluid">
@@ -23,7 +24,7 @@
         <div class="row py-12 px-4 align-items-center">
             <div class="col-12 col-md-5">
                 <h1 style="font-size:3.5rem;" class="amplesoft-b ">{{'talkTo' | translate}}</h1>
-                <img class="w-50" ng-src="./assets/img/telmed-content/hello-alvin-telemed-logo-{{getIdioma()}}.png" alt="">
+                <img class="w-50" ng-src="./assets/img/telmed-content/hello-alvin-telemed-logo-{{sys.getIdioma()}}.png" alt="">
             </div>
             <div class="col-12 col-md-7 text-left">
                 <div class="position-relative mt-n4">
@@ -39,11 +40,12 @@
         </div>
     </div>
 </section>
+
 <!--Header with video MOB starts -->
 <section class="mobile-only mt-n8">
     <div class="row">
         <div class="col">
-            <img ng-src="https://icuracao.com/media/assets/calmed/images/telemed-header-MOB-{{getIdioma()}}.jpg" alt="Curacao | TeleMED" class="w-100 h-auto mt-11">
+            <img ng-src="https://icuracao.com/media/assets/calmed/images/telemed-header-MOB-{{sys.getIdioma()}}.jpg" alt="Curacao | TeleMED" class="w-100 h-auto mt-11">
         </div>
     </div>
     <div class="row mt-n15 align-items-center">
@@ -62,17 +64,20 @@
         </div>
     </div>
 </section>
+
 <!--Subscriptions Benefits Start-->
 <div class="py-4">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center">
-                <h3 class="mb-4 text-primary h-neue-black">{{'helloAlvinSubscriptionsBenefits' | translate}}<span style="font-size: small; vertical-align: text-top;">1</span></h3>
+                <h3 class="mb-4 text-primary h-neue-black">
+                    {{'helloAlvinSubscriptionsBenefits' | translate}}<span style="font-size: small; vertical-align: text-top;">1</span>
+                </h3>
                 <div class="row py-3 bg-light">
                     <div class="pc-only col-12 col-md-4">
                         <div class="d-flex h-100 justify-content-center">
                             <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3"
-                                 ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{getIdioma()}}.png" alt="">
+                                 ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{sys.getIdioma()}}.png" alt="">
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
@@ -111,6 +116,7 @@
         </div>
     </div>
 </div>
+
 <!--COVID message-->
 <div class="p-4 w-lg-50 mx-auto mt-n4 bg-dark">
     <div class="container">
@@ -128,7 +134,7 @@
             <div class="col-12">
                 <div class="d-flex h-100 justify-content-center">
                     <img style="max-width: 200px; margin: auto;" class="align-self-center img-fluid my-3"
-                         ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{getIdioma()}}.png" alt="">
+                         ng-src="./assets/img/telmed-content/exclusive-offer-for-curacao-card-holders-{{sys.getIdioma()}}.png" alt="">
                 </div>
             </div>
         </div>
@@ -324,6 +330,7 @@
         </div>
     </div>
 </div>
+
 <!-- Enter Account #4 - PC -->
 <div id="enterAccount4" class="d-only container max-auto w-lg-50 mt-4" ng-if="'M12'.indexOf(data.plan) !== -1 && !data.cc">
     <div class="row">
@@ -369,6 +376,7 @@
         </div>
     </div>
 </div>
+
 <!-- Review and Complete FORM -->
 <section id="editCollapseParentOne" ng-hide="!data.codeVerified || 'M12'.indexOf(data.plan) === -1">
     <div class="container">
@@ -728,31 +736,31 @@
         </div>
     </div>
 </section>
-    <!-- New Banner Start -->
-    <div ng-if="sys.idioma === 'en'" class="container mb-4 mt-7">
-        <div class="row no-gutters justify-content-between">
-            <div class="col-12">
-                <div class="d-flex h-100 justify-content-center">
-                    <a href="https://icuracao.com/default/rokit-io-3d-4g-lte-android-16gb-gsm-unlocked.html">
-                        <img class="promo-desktop align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-PC-Landing-ENG.png" alt="TeleMed">
-                        <img class="promo-mobile align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-MOB-Landing-ENG.png" alt="TeleMed">
-                    </a>
-                </div>
+<!-- New Banner Start -->
+<div ng-if="sys.idioma === 'en'" class="container mb-4 mt-7">
+    <div class="row no-gutters justify-content-between">
+        <div class="col-12">
+            <div class="d-flex h-100 justify-content-center">
+                <a href="https://icuracao.com/default/rokit-io-3d-4g-lte-android-16gb-gsm-unlocked.html">
+                    <img class="promo-desktop align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-PC-Landing-ENG.png" alt="TeleMed">
+                    <img class="promo-mobile align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-MOB-Landing-ENG.png" alt="TeleMed">
+                </a>
             </div>
         </div>
     </div>
-    <div ng-if="sys.idioma === 'es'" class="container mb-4 mt-7">
-        <div class="row no-gutters justify-content-between">
-            <div class="col-12">
-                <div class="d-flex h-100 justify-content-center">
-                    <a href="https://icuracao.com/esp/rokit-io-3d-4g-lte-android-16gb-gsm-unlocked.html">
-                        <img class="promo-desktop align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-PC-Landing-SPA.png" alt="TeleMed">
-                        <img class="promo-mobile align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-MOB-Landing-SPA.png" alt="TeleMed">
-                    </a>
-                </div>
+</div>
+<div ng-if="sys.idioma === 'es'" class="container mb-4 mt-7">
+    <div class="row no-gutters justify-content-between">
+        <div class="col-12">
+            <div class="d-flex h-100 justify-content-center">
+                <a href="https://icuracao.com/esp/rokit-io-3d-4g-lte-android-16gb-gsm-unlocked.html">
+                    <img class="promo-desktop align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-PC-Landing-SPA.png" alt="TeleMed">
+                    <img class="promo-mobile align-self-center img-fluid" src="./assets/img/telmed-content/TeleMedPhone-MOB-Landing-SPA.png" alt="TeleMed">
+                </a>
             </div>
         </div>
     </div>
+</div>
 <!-- Quotes Start -->
 <div class="p-4">
     <div class="container">
@@ -1006,7 +1014,6 @@
     </div>
 
 </div>
-
 <!-- pop up begin -->
 <div class="modal fade" id="account-verification" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

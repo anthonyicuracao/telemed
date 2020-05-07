@@ -8,13 +8,15 @@ var app = angular.module('telemed', [
 app.run(function ($rootScope, $translate) {
     $rootScope.sys = {
         idioma: 'en',
-};
+    };
+
     var sys = $rootScope.sys;
 
     var url_string = window.location.href;
     var url = new URL(url_string);
 
     console.log(url)
+
     if (url.port && '5500,5501,8000,8100'.indexOf(url.port) !== -1) {
         sys.testMode = true;
     }
@@ -84,6 +86,10 @@ app.run(function ($rootScope, $translate) {
         if (event) {
             event.stopPropagation();
         }
+    }
+
+    sys.getIdioma = function () {
+        return (sys.idioma === 'en' ? 'eng' : 'esp');
     }
 
 });
